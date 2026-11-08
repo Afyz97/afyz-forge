@@ -1,0 +1,143 @@
+{
+  "skill_name": "user-first-ux",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this account card:\n<div class=\"card\"><p>Account No: 1234567890</p><p>Balance: 12450.5</p><p>Change: 32%</p><p>Last Updated: 3 weeks ago</p><p>Type: Savings</p></div>",
+      "expected_output": "Review table flagging H1, H2, H3 and relative-date handling (TB3), with a hierarchy fix: dominant formatted balance, labels above values, trend with icon+sign+context, absolute date in <time>.",
+      "files": [],
+      "expectations": [
+        "Output uses the review table format: Rule ID | Element/file | Problem | User impact | Fix | Severity",
+        "Flags H1 (no single dominant metric)",
+        "Flags H2 (equal-weight Label: value rows)",
+        "Flags H3 (trend has no direction/sign/comparison context, or relies on colour)",
+        "Flags the relative date and proposes an absolute date via tooltip or <time datetime>",
+        "Returns concrete hierarchy fix code or markup",
+        "Lists top 3 fixes and open hypotheses"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Build an assignee picker for a task app. There are 40 users in the workspace.",
+      "expected_output": "UX brief, flow, then a combobox picker with type-ahead search, avatars, recent picks, full keyboard support and a helpful zero-results state; completed checklist.",
+      "files": [],
+      "expectations": [
+        "Starts with a UX brief (users, top tasks, context) with assumptions marked as hypotheses",
+        "Includes type-ahead search",
+        "Shows avatars next to names",
+        "Shows recent or suggested picks first",
+        "Supports arrows, Enter and Esc with visible focus and correct ARIA roles",
+        "Zero-results state gives a next step (e.g. invite)",
+        "Trigger is a verb label such as 'Set assignee', not 'Select...'"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write the stock availability copy for a product page for three cases: stock = 0, stock = 3, stock = 250.",
+      "expected_output": "Honest human copy: 0 -> out of stock with Notify me / alternatives; 3 -> 'Only 3 left'; 250 -> in stock with delivery info and no urgency.",
+      "files": [],
+      "expectations": [
+        "Stock 0 copy offers a helpful alternative such as 'Notify me' or similar items",
+        "Stock 3 copy states the real count in human language",
+        "Stock 250 copy contains no urgency or scarcity language",
+        "No fake timers or invented numbers anywhere",
+        "Copy is computed from the real count, not hard-coded urgency"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review this card's typography: title 26px, subtitle 11px, meta 12px, button text 18px.",
+      "expected_output": "Flags T1 (ad-hoc sizes), T2 (unbalanced 26/11 jump), T4 (button larger than body scale) and proposes a rem token scale with ratio 1.2-1.25.",
+      "files": [],
+      "expectations": [
+        "Flags T1: sizes are ad-hoc rather than a modular token scale",
+        "Flags T2: 26px over 11px is an unbalanced hierarchy step",
+        "Flags T4: button text should be body-scale",
+        "Notes 11px is below the 12px minimum for essential text (T3)",
+        "Proposes a rem-based token scale with ratio around 1.2-1.25"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Build a signup form for our Malaysian SaaS product.",
+      "expected_output": "Single-column form with labels above fields, single Full name field, correct autocomplete attributes, optional fields marked, paste allowed, show-password toggle, specific inline errors preserving input, unchecked marketing consent.",
+      "files": [],
+      "expectations": [
+        "Labels sit above fields; no placeholder-only labels",
+        "Uses autocomplete attributes (name, email, new-password, tel where used)",
+        "Marks optional fields rather than required ones",
+        "Allows paste and password managers; offers show password",
+        "Specific inline error messages that preserve user input",
+        "Marketing consent checkbox is not pre-checked",
+        "Uses a single 'Full name' field rather than first/last split",
+        "Primary button is verb + object, e.g. 'Create account'"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Add a 'Delete account' flow to the settings page.",
+      "expected_output": "Findable entry, plain consequence statement, data export offered, action-labelled buttons, no confirmshaming, effort comparable to signup.",
+      "files": [],
+      "expectations": [
+        "States the consequences clearly (what is deleted, what is kept, whether reversible)",
+        "Offers data export before deletion",
+        "Buttons are action-labelled (e.g. 'Delete my account' / 'Keep my account'), not Yes/No",
+        "No confirmshaming or guilt copy",
+        "Deleting is about as easy as signing up; no roach motel"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Review this dashboard: it has 12 KPI tiles in a 4x3 grid, all the same size and style, each with a number and a small sparkline.",
+      "expected_output": "Reduces to a primary KPI with comparison context, groups or demotes the rest, justifies chart types by question, and adds a table/text alternative.",
+      "files": [],
+      "expectations": [
+        "Asks or states which question the dashboard answers (D1)",
+        "Promotes one primary KPI with comparison context (H1, D1, U8)",
+        "Reduces or groups the remaining tiles",
+        "Justifies chart types by the question being asked (D2)",
+        "Adds a table or text alternative for accessibility (D4)"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Review our mobile navigation: a hamburger menu that opens 4 levels of nested dropdowns.",
+      "expected_output": "Flags deep nesting (L4), proposes flattened IA and a labelled bottom nav of 3-5 items or a clear hierarchy, with targets of at least 44px.",
+      "files": [],
+      "expectations": [
+        "Flags the nested dropdowns as a navigation problem (L4)",
+        "Proposes a flattened information architecture",
+        "Proposes a labelled bottom nav of 3-5 items or a clear shallow hierarchy with breadcrumbs",
+        "Specifies touch targets of at least 44px",
+        "Marks the active item (aria-current)"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Make this checkout page look more modern. (Context: the checkout currently shows shipping fees only on the final step and the Pay button does nothing on mobile Safari.)",
+      "expected_output": "Fixes the broken flow and hidden fees first, explicitly citing the priority order, before any restyling.",
+      "files": [],
+      "expectations": [
+        "Identifies the broken Pay button as the top issue before visual changes",
+        "Flags hidden shipping fees as a dark pattern and moves the total early",
+        "Explicitly explains the priority order (honest/usable before aesthetic)",
+        "Does not deliver only a restyle",
+        "Stops for approval after reporting and planning"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Build an invoices data table with filters for status and date range.",
+      "expected_output": "Sticky header, sort state, right-aligned tabular numbers with units, URL-persisted filters, mobile card layout, and empty/loading/error states.",
+      "files": [],
+      "expectations": [
+        "Sticky table header",
+        "Numbers right-aligned with tabular numerals and units in the header",
+        "Filter/sort/page state stored in the URL",
+        "Mobile card or list-row layout with the key column visible",
+        "Empty, loading and error states implemented",
+        "Sort state exposed (e.g. aria-sort)"
+      ]
+    }
+  ]
+}

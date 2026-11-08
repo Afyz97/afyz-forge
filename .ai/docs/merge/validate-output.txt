@@ -1,0 +1,170 @@
+=== claude plugin validate --strict .
+Validating marketplace manifest: C:\laragon\www\afyz-forge\.claude-plugin\marketplace.json
+
+ℹ Advice (does not change the verdict):
+
+  ❯ C:\laragon\www\afyz-forge\plugins\ux-laws\README.md: This README has no line that installs "ux-laws" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. In it, replace <owner>/<repo> with the repository that holds the marketplace.
+      /plugin install ux-laws --marketplace <owner>/<repo>
+  ❯ C:\laragon\www\afyz-forge\plugins\ui-ten-fixes\README.md: This README has no line that installs "ui-ten-fixes" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. In it, replace <owner>/<repo> with the repository that holds the marketplace.
+      /plugin install ui-ten-fixes --marketplace <owner>/<repo>
+  ❯ C:\laragon\www\afyz-forge\plugins\omni-design\README.md: This README has no line that installs "omni-design" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. In it, replace <owner>/<repo> with the repository that holds the marketplace.
+      /plugin install omni-design --marketplace <owner>/<repo>
+  ❯ C:\laragon\www\afyz-forge\plugins\ultimate-design-suite\README.md: This README has no line that installs "ultimate-design-suite" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. In it, replace <owner>/<repo> with the repository that holds the marketplace.
+      /plugin install ultimate-design-suite --marketplace <owner>/<repo>
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/user-first-ux
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\user-first-ux\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\user-first-ux. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/ui-studio
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\ui-studio\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\ui-studio. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/ux-laws
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\ux-laws\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\ux-laws. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+ℹ Advice (does not change the verdict):
+
+  ❯ C:\laragon\www\afyz-forge\plugins\ux-laws\README.md: This README has no line that installs "ux-laws" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. Validate the folder that holds its marketplace.json to have <owner>/<repo> filled in, and the name its marketplace lists it under.
+      /plugin install ux-laws --marketplace <owner>/<repo>
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/ui-ten-fixes
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\ui-ten-fixes\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\ui-ten-fixes. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+ℹ Advice (does not change the verdict):
+
+  ❯ C:\laragon\www\afyz-forge\plugins\ui-ten-fixes\README.md: This README has no line that installs "ui-ten-fixes" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. Validate the folder that holds its marketplace.json to have <owner>/<repo> filled in, and the name its marketplace lists it under.
+      /plugin install ui-ten-fixes --marketplace <owner>/<repo>
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/omni-design
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\omni-design\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\omni-design. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+ℹ Advice (does not change the verdict):
+
+  ❯ C:\laragon\www\afyz-forge\plugins\omni-design\README.md: This README has no line that installs "omni-design" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. Validate the folder that holds its marketplace.json to have <owner>/<repo> filled in, and the name its marketplace lists it under.
+      /plugin install omni-design --marketplace <owner>/<repo>
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/ultimate-design-suite
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\ultimate-design-suite\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\ultimate-design-suite. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+ℹ Advice (does not change the verdict):
+
+  ❯ C:\laragon\www\afyz-forge\plugins\ultimate-design-suite\README.md: This README has no line that installs "ultimate-design-suite" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. Validate the folder that holds its marketplace.json to have <owner>/<repo> filled in, and the name its marketplace lists it under.
+      /plugin install ultimate-design-suite --marketplace <owner>/<repo>
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/orbit-design-engine
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\orbit-design-engine\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\orbit-design-engine. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/session-orchestrator
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\session-orchestrator\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\session-orchestrator. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+✔ Validation passed
+=== claude plugin validate --strict plugins/system-design
+Validating plugin manifest: C:\laragon\www\afyz-forge\plugins\system-design\.claude-plugin\plugin.json
+
+Plugin directory checks for C:\laragon\www\afyz-forge\plugins\system-design. The plugin directory is the catalog that plugins are submitted to; this is a subset of what it runs.
+
+⚠ Found 1 plugin directory warning:
+
+  ❯ .claude-plugin/plugin.json icon: No icon (ICON_MISSING). No icon found in the plugin. The validator looked for `icon` in plugin.json and for a file at .claude-plugin/icon.png or .svg, assets/icon.png or .svg, or a similar path.
+    Fix: Add a square PNG to the plugin folder at .claude-plugin/icon.png, or set `icon` in plugin.json to the path of a square PNG or JPEG in the plugin: 512 to 2048 px on each side, under 2 MB. SVG and WebP are not accepted. That file may become the listing icon only once: the first time the plugin is saved or submitted in the developer portal. Adding or changing it later does not change the icon.
+
+These plugin directory checks do not change the result below.
+
+The directory also runs a safety scan and a policy review that this command does not.
+
+✔ Validation passed

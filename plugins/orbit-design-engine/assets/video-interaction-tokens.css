@@ -1,0 +1,14 @@
+/* Motion effects and host-theme semantic aliases only. No theme switching or palette presets. */
+:root { --v-ease:cubic-bezier(.22,.8,.22,1); --v-ease-layout:cubic-bezier(.2,.7,.2,1); --v-micro:150ms; --v-panel:250ms; --v-reflow:300ms; --v-progress:650ms; }
+.v-primary { background-color:var(--ode-primary, Highlight); color:var(--ode-on-primary, HighlightText); border-color:var(--ode-primary, Highlight); }
+.v-accent-surface { background-color:var(--ode-surface-muted, ButtonFace); color:var(--ode-text, CanvasText); }
+.v-chart-line { stroke:var(--app-chart-primary, var(--ode-primary, Highlight)); }
+.v-theme-transition { transition: background-color var(--v-panel) ease-out, border-color var(--v-panel) ease-out, color var(--v-panel) ease-out, fill var(--v-panel) ease-out, stroke var(--v-panel) ease-out; }
+.v-kpi, .v-tracker-digits { font-variant-numeric:tabular-nums; }
+.v-soft-reveal { animation:v-soft-reveal 360ms var(--v-ease) both; }
+@keyframes v-soft-reveal { from { opacity:0; transform:translateY(9px); } to { opacity:1; transform:translateY(0); } }
+.v-team-card { transition:transform var(--v-reflow) var(--v-ease-layout), opacity var(--v-panel) ease-out; }
+.v-modal-panel { transition:opacity var(--v-panel) ease-out, transform var(--v-panel) var(--v-ease); }
+.v-modal-panel[data-entering="true"] { opacity:0; transform:translateY(10px) scale(.99); }
+.v-progress-arc { transition:stroke-dashoffset var(--v-progress) var(--v-ease); }
+@media (prefers-reduced-motion:reduce) { .v-theme-transition,.v-team-card,.v-modal-panel,.v-progress-arc { transition:none !important; } .v-soft-reveal { animation:none !important; } }

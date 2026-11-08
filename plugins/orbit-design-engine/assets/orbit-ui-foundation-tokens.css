@@ -1,0 +1,32 @@
+/* Orbit Design Engine: host-theme aliases and structure/motion ONLY.
+   Identify actual host tokens before use; do not set or override host theme colours.
+   Browser system colours are standalone-preview fallbacks, not application palettes. */
+:root {
+  --ode-canvas: var(--app-background, var(--bs-body-bg, Canvas));
+  --ode-surface: var(--app-surface, var(--bs-card-bg, Canvas));
+  --ode-surface-muted: var(--app-surface-subtle, var(--bs-secondary-bg, ButtonFace));
+  --ode-text: var(--app-foreground, var(--bs-body-color, CanvasText));
+  --ode-text-muted: var(--app-muted-foreground, var(--bs-secondary-color, GrayText));
+  --ode-border: var(--app-border, var(--bs-border-color, ButtonBorder));
+  --ode-primary: var(--app-primary, var(--bs-primary, Highlight));
+  --ode-on-primary: var(--app-on-primary, HighlightText);
+  --ode-focus: var(--app-focus, var(--bs-primary, Highlight));
+  --ode-success: var(--app-success, var(--bs-success, CanvasText));
+  --ode-warning: var(--app-warning, var(--bs-warning, CanvasText));
+  --ode-danger: var(--app-danger, var(--bs-danger, CanvasText));
+  --ode-radius-card: 12px; --ode-radius-control: 9px; --ode-gap: 18px;
+  --ode-sidebar-wide: 248px; --ode-sidebar-slim: 72px; --ode-header: 68px;
+  --ode-ease: cubic-bezier(.2,.8,.2,1);
+  --ode-fast: 150ms; --ode-normal: 250ms; --ode-slow: 340ms;
+}
+.ui-app { color: var(--ode-text); background: var(--ode-canvas); min-height: 100vh; }
+.ui-card { background: var(--ode-surface); border: 1px solid var(--ode-border); border-radius: var(--ode-radius-card); }
+.ui-control { border: 1px solid var(--ode-border); border-radius: var(--ode-radius-control); background: var(--ode-surface); color: var(--ode-text); transition: border-color var(--ode-fast) var(--ode-ease), transform var(--ode-fast) var(--ode-ease); }
+.ui-control:focus-visible, .ui-button:focus-visible { outline: 2px solid var(--ode-focus); outline-offset: 2px; }
+.ui-button { border-radius: var(--ode-radius-control); transition: transform var(--ode-fast) var(--ode-ease), opacity var(--ode-fast) var(--ode-ease); }
+.ui-button:hover:not(:disabled) { transform: translateY(-1px); }
+.ui-button:active:not(:disabled) { transform: translateY(0); }
+.ui-button:disabled { opacity: .55; cursor: not-allowed; }
+.ui-reveal { animation: ode-reveal var(--ode-slow) var(--ode-ease) both; }
+@keyframes ode-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .ui-reveal { animation: none !important; } .ui-control, .ui-button { transition: none !important; } }

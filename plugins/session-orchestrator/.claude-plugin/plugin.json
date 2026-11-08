@@ -1,0 +1,22 @@
+{
+  "name": "session-orchestrator",
+  "version": "0.1.0",
+  "description": "Turns the main session into an orchestrator: detects the harness and its per-call model/effort support, splits a task into session-local roles with self-contained briefs, routes each role to a model alias and effort level by task class, delegates to a leaf-only role-runner agent, gates file-writing roles behind user approval, keeps parallel writers on disjoint files, then verifies, reports and cleans up a gitignored temp folder. Falls back to model-only, same-model or inline roles.",
+  "author": {
+    "name": "Afyz97",
+    "url": "https://github.com/Afyz97"
+  },
+  "homepage": "https://github.com/Afyz97/afyz-forge",
+  "repository": "https://github.com/Afyz97/afyz-forge",
+  "license": "Apache-2.0",
+  "keywords": [
+    "orchestration",
+    "subagents",
+    "delegation",
+    "model-routing",
+    "effort",
+    "multi-agent",
+    "codex",
+    "claude-code"
+  ]
+}

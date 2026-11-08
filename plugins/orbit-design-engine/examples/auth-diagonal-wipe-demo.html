@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit UI – Diagonal Auth Motion Demo</title>
+<style>
+/* Standalone demonstration: host semantic tokens first; browser system colours only when unembedded. */
+:root {
+  --demo-canvas:var(--app-background,var(--ode-canvas,Canvas));
+  --demo-text:var(--app-foreground,var(--ode-text,CanvasText));
+  --demo-muted:var(--app-muted-foreground,var(--ode-text-muted,GrayText));
+  --demo-border:var(--app-border,var(--ode-border,ButtonBorder));
+  --demo-surface:var(--app-surface,var(--ode-surface,Canvas));
+  --demo-hero:var(--app-hero-surface,var(--app-primary,var(--ode-primary,Highlight)));
+  --demo-hero-text:var(--app-hero-text,var(--app-on-primary,var(--ode-on-primary,HighlightText)));
+  --demo-primary:var(--app-primary,var(--ode-primary,Highlight));
+  --demo-primary-text:var(--app-on-primary,var(--ode-on-primary,HighlightText));
+  --demo-danger:var(--app-danger,var(--ode-danger,CanvasText));
+  --radius:22px; --duration:720ms; --ease:cubic-bezier(.68,0,.22,1);
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--demo-canvas);color:var(--demo-text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:min(1060px,calc(100vw - 36px));margin:40px auto 46px}
+.overline{text-align:center;letter-spacing:.25em;text-transform:uppercase;font-size:10px;color:var(--demo-muted);font-weight:700}
+h1{font-size:clamp(24px,3.2vw,40px);line-height:1.1;text-align:center;margin:8px 0 30px;font-weight:750;letter-spacing:-.04em}
+h1 em{display:block;color:var(--demo-primary);font-style:normal}
+.auth-stage{position:relative;width:100%;height:470px;overflow:hidden;border-radius:var(--radius);box-shadow:0 30px 60px color-mix(in srgb,var(--demo-text) 14%,transparent);border:1px solid var(--demo-border);isolation:isolate;background:var(--demo-hero)}
+.scene{position:absolute;inset:0;display:grid;grid-template-columns:47% 53%;opacity:0;pointer-events:none;z-index:1}
+.scene.current{opacity:1;pointer-events:auto;z-index:2}
+.scene.current[inert]{pointer-events:none}
+.scene.sign-up{grid-template-columns:53% 47%}
+.form-area{background:var(--demo-surface);color:var(--demo-text);padding:44px clamp(26px,4.2vw,66px);display:flex;justify-content:center;flex-direction:column;min-width:0}
+.hero-area{padding:54px clamp(28px,5vw,76px);background:var(--demo-hero);color:var(--demo-hero-text);display:flex;justify-content:center;flex-direction:column;min-width:0;position:relative}
+.scene.sign-in .hero-area{border-left:1px solid var(--demo-border)}
+.scene.sign-up .hero-area{border-right:1px solid var(--demo-border)}
+.kicker{font-size:10px;letter-spacing:.27em;text-transform:uppercase;font-weight:800;opacity:.8;margin-bottom:19px}
+.hero-area h2{margin:0 0 19px;font:normal clamp(34px,4vw,52px)/1.06 Georgia,"Times New Roman",serif;letter-spacing:-.05em}
+.hero-area h2 em{display:block;font-weight:400}
+.hero-area p{max-width:300px;font-size:14px;line-height:1.7;margin:0;opacity:.8}
+.form-title{font-size:22px;font-weight:750;letter-spacing:-.04em;line-height:1;margin:0}
+.rule{width:48px;height:2px;background:var(--demo-primary);margin:14px 0 20px}
+label.text-field{display:block;margin:12px 0 2px;font-size:11px;color:var(--demo-muted)}
+.text-field input{display:block;outline:none;width:100%;min-height:35px;border:0;border-bottom:1px solid var(--demo-border);background:transparent;padding:8px 1px 7px;color:var(--demo-text);font:inherit;font-size:13px;border-radius:0;transition:border-color 160ms,box-shadow 160ms}
+.text-field input:focus{border-bottom:2px solid var(--demo-primary)}
+.text-field input::placeholder{color:var(--demo-muted)}
+.secondary{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:17px 0 16px;font-size:11px}
+.secondary label{display:flex;align-items:center;gap:6px;color:var(--demo-muted)}
+.secondary input{accent-color:var(--demo-primary);width:15px;height:15px}
+a,.linklike{color:var(--demo-primary);font:inherit;text-underline-offset:3px;text-decoration:underline}
+.linklike{padding:0;border:0;background:none;cursor:pointer;font-weight:700}
+button.primary{cursor:pointer;display:block;width:100%;border:0;border-radius:80px;background:var(--demo-primary);color:var(--demo-primary-text);padding:12px 14px;font:700 12px system-ui;transition:transform 140ms,filter 140ms;min-height:44px}
+button.primary:hover{filter:brightness(1.05);transform:translateY(-1px)}
+button.primary:active{transform:scale(.99)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--demo-primary);outline-offset:3px}
+.switch-note{margin:13px 0 0;color:var(--demo-muted);font-size:11px}
+.center{text-align:center}
+.error{font-size:11px;color:var(--demo-danger);margin:6px 0 2px;min-height:0}
+.notice{color:var(--demo-muted);text-align:center;font-size:12px;margin:20px 0 0}
+#status{min-height:18px;font-size:12px;color:var(--demo-text);text-align:center;margin-top:12px}
+/* The diagonal mask takes its surface from the ACTIVE host theme. */
+.blade{position:absolute;z-index:5;top:-15%;height:130%;left:0;width:220%;background:var(--demo-hero);pointer-events:none;opacity:0;transform:translateX(55%) skewX(-11deg);will-change:transform}
+.blade.go-left{opacity:1;animation:moveBladeLeft var(--duration) var(--ease) both}
+.blade.go-right{opacity:1;animation:moveBladeRight var(--duration) var(--ease) both}
+@keyframes moveBladeLeft{0%{transform:translateX(55%) skewX(-11deg)}50%{transform:translateX(-25%) skewX(-11deg)}100%{transform:translateX(-105%) skewX(-11deg)}}
+@keyframes moveBladeRight{0%{transform:translateX(-105%) skewX(-11deg)}50%{transform:translateX(-25%) skewX(-11deg)}100%{transform:translateX(55%) skewX(-11deg)}}
+.scene.fresh .content-enter{animation:contentIn 280ms 70ms both}
+@keyframes contentIn{from{opacity:.5;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){
+ main{width:min(470px,calc(100vw - 20px));margin:24px auto 36px}h1{margin-bottom:20px}
+ .auth-stage{height:650px;border-radius:18px}.scene,.scene.sign-up{display:flex;flex-direction:column}
+ .scene .form-area{order:2;flex:1;padding:25px 27px;justify-content:flex-start}
+ .scene .hero-area{order:1;flex:none;padding:20px 28px;min-height:142px}
+ .hero-area h2{font-size:29px;margin-bottom:4px}.hero-area h2 em{display:inline}
+ .hero-area p{font-size:11px;line-height:1.4}.kicker{margin:0 0 5px}.secondary{margin:12px 0}
+ .form-area .text-field{margin:5px 0}.form-area .rule{margin:9px 0}
+}
+@media(prefers-reduced-motion:reduce){:root{--duration:1ms}.blade{display:none!important}.scene.fresh .content-enter{animation:none}button.primary,.text-field input{transition:none}}
+
+</style>
+</head>
+<body>
+<main>
+ <div class="overline">Orbit UI / Motion reference E</div>
+ <h1>Login &amp; Signup <em>Diagonal motion</em></h1>
+ <div id="stage" class="auth-stage" data-mode="signin">
+  <section class="scene sign-in current" id="signin-scene" aria-hidden="false" aria-label="Sign in">
+   <div class="form-area"><div class="content-enter">
+    <h2 class="form-title" tabindex="-1">Sign in</h2><div class="rule"></div>
+    <form id="signin" autocomplete="on">
+      <label class="text-field">Email address<input required type="email" name="email" autocomplete="username" placeholder="you@company.com"></label>
+      <label class="text-field">Password<input required minlength="8" type="password" name="password" autocomplete="current-password" placeholder="Enter your password"></label>
+      <div class="secondary"><label><input type="checkbox" name="remember" checked>Keep me signed in</label><a href="#status" id="forgot">Forgot password?</a></div>
+      <button type="submit" class="primary">Sign in</button>
+    </form>
+    <p class="switch-note">New here? <button type="button" class="linklike" data-switch="signup">Create an account</button></p>
+   </div></div>
+   <div class="hero-area"><div class="content-enter"><div class="kicker">Orbit · welcome</div><h2>Welcome <em>back.</em></h2><p>Your projects, your ideas and your people are exactly where you left them.</p></div></div>
+  </section>
+  <section class="scene sign-up" id="signup-scene" aria-hidden="true" inert aria-label="Create an account">
+   <div class="hero-area"><div class="content-enter"><div class="kicker">Orbit · begin</div><h2>Start the <em>first page.</em></h2><p>One account for your projects, events and everything you are building.</p></div></div>
+   <div class="form-area"><div class="content-enter">
+    <h2 class="form-title" tabindex="-1">Create account</h2><div class="rule"></div>
+    <form id="signup" autocomplete="on">
+     <label class="text-field">Full name<input required name="name" autocomplete="name" placeholder="Your name"></label>
+     <label class="text-field">Email address<input required type="email" name="email" autocomplete="email" placeholder="you@company.com"></label>
+     <label class="text-field">Password<input required minlength="8" type="password" name="password" autocomplete="new-password" placeholder="Minimum 8 characters"></label>
+     <div class="secondary"><label><input type="checkbox" required>Agree to terms (demo)</label></div>
+     <button type="submit" class="primary">Create account</button>
+    </form>
+    <p class="switch-note">Already have an account? <button type="button" class="linklike" data-switch="signin">Sign in</button></p>
+   </div></div>
+  </section>
+  <div class="blade" id="blade" aria-hidden="true"></div>
+ </div>
+ <p class="notice">An original motion demonstration—not a live authentication service. Keyboard and reduced-motion support included.</p>
+ <div id="status" role="status" aria-live="polite"></div>
+</main>
+<script>
+(()=>{
+ 'use strict';
+ const stage=document.getElementById('stage');
+ const blade=document.getElementById('blade');
+ const status=document.getElementById('status');
+ const scenes={signin:document.getElementById('signin-scene'),signup:document.getElementById('signup-scene')};
+ let mode='signin';let targetMode='signin';let busy=false;let swapTimer=null;let fallbackTimer=null;
+ const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ function makeCurrent(next){
+   for(const key of Object.keys(scenes)){
+    const scene=scenes[key];const current=key===next;
+    scene.classList.toggle('current',current);
+    scene.setAttribute('aria-hidden',String(!current));
+    if(current)scene.removeAttribute('inert');else scene.setAttribute('inert','');
+   }
+   stage.dataset.mode=next;
+ }
+ function finish(next){
+   window.clearTimeout(swapTimer);window.clearTimeout(fallbackTimer);
+   blade.removeEventListener('animationend',onAnimationEnd);
+   mode=next;makeCurrent(next);
+   blade.classList.remove('go-left','go-right');
+   scenes[next].classList.remove('fresh');
+   busy=false;
+   scenes[next].querySelector('.form-title').focus({preventScroll:true});
+   status.textContent=next==='signin'?'Sign-in form ready.':'Registration form ready.';
+ }
+ function visuallySwap(next){
+   for(const [key,scene] of Object.entries(scenes)){
+      scene.classList.toggle('current',key===next);
+      scene.setAttribute('aria-hidden','true');
+      scene.setAttribute('inert','');
+   }
+   stage.dataset.mode=next;
+ }
+ function onAnimationEnd(e){if(e.target===blade)finish(targetMode)}
+ function switchMode(next){
+   if(busy||mode===next)return;
+   busy=true;targetMode=next;
+   if(stage.contains(document.activeElement))document.activeElement.blur();
+   if(prefersReduced.matches){finish(next);return;}
+   // Both scenes stay mounted; the green angled blade masks the instantaneous scene handoff.
+   const duration=720;
+   blade.classList.remove('go-left','go-right');
+   void blade.offsetWidth;
+   blade.classList.add(next==='signup'?'go-left':'go-right');
+   scenes[next].classList.add('fresh');
+   swapTimer=window.setTimeout(()=>visuallySwap(next),Math.round(duration*.49));
+   fallbackTimer=window.setTimeout(()=>finish(next),duration+100);
+   blade.addEventListener('animationend',onAnimationEnd);
+ }
+ document.querySelectorAll('[data-switch]').forEach(btn=>btn.addEventListener('click',()=>switchMode(btn.dataset.switch)));
+ for(const f of document.querySelectorAll('form')){
+   f.addEventListener('submit',e=>{
+      e.preventDefault();
+      if(!f.reportValidity())return;
+      status.textContent='Demo only: form validated locally. Connect this form to your application authentication backend.';
+   });
+ }
+ document.getElementById('forgot').addEventListener('click',e=>{e.preventDefault();status.textContent='Demo only: connect this link to your password-recovery route.';});
+ prefersReduced.addEventListener('change',()=>{if(busy)finish(targetMode);});
+})();
+</script>
+</body>
+</html>

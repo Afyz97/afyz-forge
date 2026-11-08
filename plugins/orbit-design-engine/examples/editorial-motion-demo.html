@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Original kinetic UI demonstration</title>
+<style>
+/* Pure motion example: never applies a palette or theme preset. */
+:root{
+  --demo-canvas:var(--app-background,var(--ode-canvas,Canvas));
+  --demo-surface:var(--app-surface,var(--ode-surface,Canvas));
+  --demo-text:var(--app-foreground,var(--ode-text,CanvasText));
+  --demo-muted:var(--app-muted-foreground,var(--ode-text-muted,GrayText));
+  --demo-border:var(--app-border,var(--ode-border,ButtonBorder));
+  --demo-accent:var(--app-primary,var(--ode-primary,Highlight));
+  --demo-on-accent:var(--app-on-primary,var(--ode-on-primary,HighlightText));
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--demo-canvas);color:var(--demo-text);font-family:system-ui,Arial,sans-serif}
+main{min-height:100dvh;display:grid;place-items:center;padding:18px}
+.stage{position:relative;isolation:isolate;overflow:hidden;width:min(100%,470px);min-height:680px;border-radius:24px;background:var(--demo-canvas);border:1px solid var(--demo-border);box-shadow:0 18px 60px color-mix(in srgb,var(--demo-text) 12%,transparent)}
+.top{position:relative;z-index:3;text-align:center;margin:95px 28px 28px;min-height:115px}
+.top h1{font-size:clamp(27px,7vw,39px);font-weight:820;letter-spacing:-.06em;line-height:1.03;margin:0}
+.top em{color:var(--demo-accent);font-family:Georgia,serif;font-weight:500;letter-spacing:-.035em}
+.top mark{color:inherit;background:linear-gradient(transparent 43%,color-mix(in srgb,var(--demo-accent) 20%,transparent) 43%,color-mix(in srgb,var(--demo-accent) 20%,transparent) 93%,transparent 93%)}
+.tracker{margin:20px auto 0;background:var(--demo-surface);border:1px solid var(--demo-border);border-radius:100px;display:flex;align-items:center;padding:7px 12px;gap:10px;width:max-content;font-size:12px;font-weight:680}
+.tick{display:grid;place-items:center;background:var(--demo-accent);color:var(--demo-on-accent);border-radius:50%;width:22px;height:22px}
+.bar{width:58px;height:5px;background:var(--demo-border);border-radius:12px;overflow:hidden}
+.fill{height:100%;background:var(--demo-accent);width:33%;transition:width 350ms ease}
+.count{font-variant-numeric:tabular-nums}
+.visual{position:relative;z-index:2;margin:45px auto 0;width:min(84%,380px);height:270px;display:grid;place-items:center}
+.window{position:relative;background:var(--demo-surface);border:1px solid var(--demo-border);border-radius:18px;box-shadow:0 24px 48px color-mix(in srgb,var(--demo-text) 14%,transparent);padding:18px;width:100%;min-height:216px}
+.chrome{display:flex;gap:4px}.chrome i{display:block;width:7px;height:7px;background:var(--demo-border);border-radius:50%}
+.window h2{font-size:16px;letter-spacing:-.035em;margin:24px 0 7px}.window p{font-size:12px;color:var(--demo-muted);margin:0 0 17px}
+.action{background:var(--demo-accent);color:var(--demo-on-accent);border:0;border-radius:9px;padding:10px 13px;font-size:12px;font-weight:720}
+.samplebox{background:var(--demo-canvas);position:absolute;right:18px;top:60px;width:89px;height:88px;border:1px solid var(--demo-border);border-radius:10px}
+.samplebox:after{content:"";position:absolute;right:0;bottom:0;width:44px;height:34px;border-radius:100% 0 10px 0;background:color-mix(in srgb,var(--demo-accent) 25%,var(--demo-canvas))}
+.ribbon{position:absolute;z-index:4;right:-12px;top:-24px;width:150px;min-height:102px;background:var(--demo-accent);border:1px solid var(--demo-border);border-radius:13px;padding:14px;box-shadow:0 14px 20px color-mix(in srgb,var(--demo-text) 20%,transparent);color:var(--demo-on-accent);transform:rotate(5deg);font-size:11px}
+.ribbon strong{display:block;font-size:15px;margin:6px 0}.ribbon b{display:block;margin-top:10px;font-size:21px}
+.ribbon.issue,.ribbon.complete{background:var(--demo-accent)} /* Scene classes describe content, not palettes. */
+.mini{margin-top:16px;display:grid;gap:8px}.mini div{border-radius:8px;background:var(--demo-canvas);padding:9px;font-size:11px;display:flex;justify-content:space-between;gap:7px}
+.mini i{display:inline-block;color:var(--demo-accent);font-style:normal}
+.bottom{position:absolute;z-index:4;bottom:103px;left:50%;transform:translateX(-50%);width:66px;height:66px;border-radius:44% 56% 57% 43%;background:var(--demo-accent);box-shadow:0 13px 27px color-mix(in srgb,var(--demo-accent) 20%,transparent)}
+.bottom:before{content:"•  •";position:absolute;top:13px;left:20px;letter-spacing:8px;font-weight:900;color:var(--demo-on-accent)}
+.bottom:after{content:"✦";position:absolute;right:-17px;top:-14px;font-size:28px;color:var(--demo-accent)}
+.feet{display:none}
+.controls{display:flex;gap:10px;justify-content:center;align-items:center;position:absolute;bottom:19px;width:100%;z-index:6}
+.controls button{background:var(--demo-surface);border:1px solid var(--demo-border);border-radius:10px;padding:10px 13px;color:var(--demo-text);font-weight:700;cursor:pointer}
+.controls button:focus-visible{outline:3px solid var(--demo-accent);outline-offset:3px}.controls button:disabled{opacity:.4;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+</style>
+</head>
+<body>
+<main><section class="stage" aria-label="Interactive demonstration of video-inspired motion">
+<div class="top"><h1 id="headline" class="word-in">Make every step <em>clear.</em></h1><div class="tracker"><span class="tick" aria-hidden="true">✓</span><span>Demo steps</span><span class="bar" aria-hidden="true"><span class="fill" id="fill" style="display:block"></span></span><span class="count" id="count">1 / 3</span></div></div>
+<div class="visual"><div class="window card-in" id="window"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div><h2 id="card-title">A simple, welcoming interface</h2><p id="card-detail">One clear action, with useful information.</p><button class="action" type="button" id="mock-action">See details</button><div class="samplebox" aria-hidden="true"></div><div class="mini" id="rows" aria-hidden="true"><div>Project status <i>On track</i></div></div></div><div class="ribbon ribbon-in" id="ribbon" aria-hidden="true">DESIGN RULE<strong>One focal point</strong><b>✓</b></div></div>
+<div class="bottom" aria-hidden="true"><span class="feet"></span></div>
+<div class="controls"><button type="button" id="prev" aria-label="Previous scene">Previous</button><button type="button" id="next">Next scene</button><button type="button" id="play" aria-pressed="false">Play</button></div>
+<p id="announcement" role="status" style="position:absolute;left:-9999px"></p>
+</section></main>
+<script>
+const scenes=[{title:'Make every step <em>clear.</em>',card:'A simple, welcoming interface',detail:'One clear action, with useful information.',ribbon:'One focal point',theme:'',rows:['Project status','On track']},{title:'Show the <em>right</em> information.',card:'A helpful progress snapshot',detail:'Progress updates only after a confirmed action.',ribbon:'Truthful progress',theme:'issue',rows:['Completed steps','2 / 3']},{title:'Give people <mark>confidence.</mark>',card:'A clear outcome',detail:'Readable feedback and accessible controls.',ribbon:'Success confirmed',theme:'complete',rows:['Current status','Completed']}];
+let step=0, playing=false, timer=null;
+const el=id=>document.getElementById(id);
+function render(){const s=scenes[step];el('headline').innerHTML=s.title;el('card-title').textContent=s.card;el('card-detail').textContent=s.detail;el('ribbon').className='ribbon ribbon-in '+s.theme;el('ribbon').innerHTML='DESIGN RULE<strong>'+s.ribbon+'</strong><b>✓</b>';el('rows').innerHTML='<div>'+s.rows[0]+' <i>'+s.rows[1]+'</i></div>';el('fill').style.width=(100*(step+1)/scenes.length)+'%';el('count').textContent=(step+1)+' / '+scenes.length;el('announcement').textContent='Scene '+(step+1)+': '+s.card;el('prev').disabled=step===0;el('next').textContent=step===scenes.length-1?'Replay':'Next scene';for(const id of ['headline','window','ribbon']){const node=el(id);node.style.animation='none';void node.offsetWidth;node.style.animation='';} }
+function advance(){step=(step+1)%scenes.length;render()}
+function stop(){playing=false;clearTimeout(timer);el('play').textContent='Play';el('play').setAttribute('aria-pressed','false')}
+function tick(){if(!playing)return;advance();timer=setTimeout(tick,2900)}
+el('next').onclick=()=>{stop();advance()};el('prev').onclick=()=>{stop();step=Math.max(0,step-1);render()};el('play').onclick=()=>{if(playing){stop();return}playing=true;el('play').textContent='Pause';el('play').setAttribute('aria-pressed','true');timer=setTimeout(tick,2900)};
+el('mock-action').onclick=()=>{stop();el('announcement').textContent='Example interaction: a real application would open details.'};render();
+</script>
+</body></html>

@@ -1,0 +1,43 @@
+{
+  "source": "User-uploaded 5-second vertical auth-motion video",
+  "fps": 30,
+  "frames": 150,
+  "selected": [
+    {
+      "file": "00-login.jpg",
+      "seconds": 0.0
+    },
+    {
+      "file": "01-click-switch.jpg",
+      "seconds": 1.25
+    },
+    {
+      "file": "02-moving-boundary.jpg",
+      "seconds": 1.5
+    },
+    {
+      "file": "03-diagonal-blade.jpg",
+      "seconds": 1.75
+    },
+    {
+      "file": "04-signup-arrived.jpg",
+      "seconds": 2.0
+    },
+    {
+      "file": "05-signup-settled.jpg",
+      "seconds": 2.75
+    },
+    {
+      "file": "06-reverse-start.jpg",
+      "seconds": 3.5
+    },
+    {
+      "file": "07-reverse-blade.jpg",
+      "seconds": 4.0
+    },
+    {
+      "file": "08-login-restored.jpg",
+      "seconds": 4.75
+    }
+  ]
+}

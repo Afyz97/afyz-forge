@@ -1,0 +1,9 @@
+/* Workspace route / chart choreography; visual styling comes from existing host tokens. */
+:root { --orbit-workspace-radius:14px; --orbit-motion-ease:cubic-bezier(.2,.78,.18,1); --orbit-route-duration:240ms; --orbit-card-duration:270ms; --orbit-graph-duration:550ms; }
+.orbit-route-enter { animation:orbit-route-enter var(--orbit-route-duration) var(--orbit-motion-ease) both; }
+.orbit-card-enter { animation:orbit-card-enter var(--orbit-card-duration) var(--orbit-motion-ease) both; }
+.orbit-graph-bar { transform-origin:center bottom; animation:orbit-bar-rise var(--orbit-graph-duration) var(--orbit-motion-ease) both; }
+@keyframes orbit-route-enter { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+@keyframes orbit-card-enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes orbit-bar-rise { from { transform:scaleY(.06); opacity:.5; } to { transform:scaleY(1); opacity:1; } }
+@media (prefers-reduced-motion:reduce) { .orbit-route-enter,.orbit-card-enter,.orbit-graph-bar { animation:none!important; transition:none!important; } }

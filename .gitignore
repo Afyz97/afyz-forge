@@ -1,0 +1,16 @@
+# Local agent/tooling runtime state — not part of the published skills
+.claude-flow/
+.claude/
+.impeccable/
+.impeccable
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+
+# ui-studio build inputs and eval output (never shipped)
+_source/
+files.zip
+plugins/*/evals/results/

@@ -1,0 +1,28 @@
+# Pre-merge script baseline (run from _incoming, Python 3.10.6, python -I)
+## ui_lint.py ui-audit/assets/sample-before.html
+01 Hierarchy | fail
+02 Alignment | warn
+03 Spacing | fail
+04 Text style | fail
+05 Colour | fail
+06 Contrast | fail
+07 Icons | fail
+08 Grouping | manual
+09 Show, don't list | warn
+10 Make it alive | manual
+## ui_lint.py ui-build/assets/reference-card.html
+01 Hierarchy | pass
+02 Alignment | manual
+03 Spacing | pass
+04 Text style | pass
+05 Colour | pass
+06 Contrast | pass
+07 Icons | pass
+08 Grouping | manual
+09 Show, don't list | manual
+10 Make it alive | manual
+## contrast.py #3b4658 #101a2c --suggest
+#3b4658 on #101a2c: 1.83:1  -> fail
+suggest #9aa6bb (7.1:1, target 7.0:1)
+## contrast.py #b4bfcf #0b1220
+#b4bfcf on #0b1220: 10.07:1  -> pass

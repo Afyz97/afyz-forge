@@ -1,0 +1,29 @@
+/* Deliberately bad sample to exercise scripts/design-audit.mjs. Not real product CSS. */
+.hero {
+  background: linear-gradient(135deg, #6d28d9, #2563eb);
+  color: #fff;
+}
+.title {
+  background: linear-gradient(90deg, #7c3aed, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.card {
+  border-radius: 16px;
+  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff, inset 0 1px 0 #fff;
+  backdrop-filter: blur(14px);
+}
+.card--a { border-radius: 16px; } .card--b { border-radius: 16px; } .card--c { border-radius: 16px; }
+.card--d { border-radius: 16px; } .card--e { border-radius: 16px; } .card--f { border-radius: 16px; }
+.card--g { border-radius: 16px; } .card--h { border-radius: 16px; }
+.panel { backdrop-filter: blur(20px); }
+.panel2 { backdrop-filter: blur(10px); }
+.panel3 { backdrop-filter: blur(8px); }
+.btn { outline: none; }
+.close { width: 16px; height: 16px; }
+.modal { z-index: 99999; }
+.override { color: red !important; padding: 0 !important; margin: 0 !important; border: 0 !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; }
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }

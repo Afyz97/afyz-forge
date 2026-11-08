@@ -1,0 +1,6 @@
+{
+  "name": "orbit-design-engine",
+  "version": "8.0.0",
+  "description": "A 26-skill modular UI/UX and motion engine with enterprise design, operational and cinematic motion, auth diagonal swipes, visual QA and Claude Code/Codex guidance.",
+  "skills": "./skills/"
+}

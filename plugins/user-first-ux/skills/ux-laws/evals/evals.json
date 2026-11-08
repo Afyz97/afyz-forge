@@ -1,0 +1,51 @@
+{
+  "skill_name": "ux-laws",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a member registration form with 14 fields.",
+      "expected_output": "Fields chunked into titled sections or steps with visible progress, one dominant 44px primary CTA, flexible input formats, a designed success state, and a self-audit in the audit-template format.",
+      "files": [],
+      "expectations": [
+        "Splits the 14 fields into labelled sections (fieldset/legend) or steps, citing Miller or Chunking",
+        "If stepped, shows done vs left (e.g. 'Step 2 of 3') and saves partial progress (Zeigarnik / Goal-Gradient)",
+        "Exactly one filled primary button, at least 44px tall, labelled verb + object (Fitts / Von Restorff)",
+        "No Reset button adjacent to the primary action",
+        "Phone / IC inputs accept spaces and dashes and normalise them (Postel)",
+        "Spacing encodes grouping: label-to-field gap smaller than field-to-field gap (Proximity)",
+        "Includes a success state with a reference and next step (Peak-End)",
+        "Ends with a self-audit using the 6-pillar table, guardrails line and top 3 fixes"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design a pricing page with 3 tiers and monthly/annual billing.",
+      "expected_output": "Counts the choice combinations, marks one honest recommended tier, aligned comparison rows, a single billing toggle, total price visible with no hidden costs, one primary CTA per tier card inside its card.",
+      "files": [],
+      "expectations": [
+        "States the number of options/combinations the user must evaluate (e.g. 3 tiers x 2 billing = 6) (Hick)",
+        "Marks one recommended tier, and only with a truthful reason (Hick / Cognitive Bias)",
+        "Features are listed in the same rows in the same order across tiers for comparison (Choice Overload)",
+        "Each tier's button sits inside its own card (Common Region)",
+        "Annual savings are real and computed; no fake 'was' prices or countdowns (Ethics)",
+        "Total price including tax/fees is clear; no pre-selected paid add-ons (Ethics)",
+        "Only the recommended tier's button is the filled, dominant style (Von Restorff)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Audit this admin dashboard screen.",
+      "expected_output": "Uses audit-template.md exactly: verdict, score x/6, one row per finding with Pass/Fail/N/A, exact element with file:line, law tags, concrete fix and severity; guardrails line; top 3 fixes; not-verified list.",
+      "files": [],
+      "expectations": [
+        "Output starts with '## UX Audit — <screen>' and a Verdict and Score x/6 line",
+        "Every Fail row names a specific element with a file:line or selector",
+        "Every Fail row has a concrete fix (classes, sizes, copy or position), not advice like 'improve hierarchy'",
+        "Each row cites at least one law tag",
+        "Guardrails (A11y, Ethics, States) are reported separately",
+        "Items that cannot be checked statically are listed as not verified, not passed",
+        "Lists the top 3 fixes in order of impact"
+      ]
+    }
+  ]
+}

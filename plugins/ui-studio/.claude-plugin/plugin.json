@@ -1,0 +1,30 @@
+{
+  "name": "ui-studio",
+  "version": "1.0.0",
+  "description": "How a UI looks and is built: visual direction with an anti-generic self-review, named styles (minimalism, glassmorphism, neumorphism, brutalism, bento, liquid glass and more), design tokens and design-system audits, visual polish with the measured Ten Fixes rules and scripts, stack builds for Laravel (Blade, Livewire 4, Flux UI v2, Filament, Tailwind, Bootstrap 5) and Next.js (React 19, Tailwind v4, Radix), critique, handoff, theming and canvas art. 3 read-only agents and a warn-only token hook. Pairs with user-first-ux for behaviour and accessibility.",
+  "author": {
+    "name": "Amir Nadzim",
+    "url": "https://github.com/Afyz97"
+  },
+  "homepage": "https://github.com/Afyz97/afyz-forge",
+  "repository": "https://github.com/Afyz97/afyz-forge",
+  "license": "Apache-2.0",
+  "keywords": [
+    "ui",
+    "design",
+    "design-tokens",
+    "design-system",
+    "visual-polish",
+    "ten-fixes",
+    "design-styles",
+    "laravel",
+    "livewire",
+    "flux",
+    "filament",
+    "nextjs",
+    "tailwind",
+    "radix",
+    "critique",
+    "handoff"
+  ]
+}

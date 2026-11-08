@@ -1,0 +1,14 @@
+/* Editorial choreography, using host semantic theme and existing brand tokens ONLY. */
+:root { --k-editorial-fast:150ms; --k-editorial-standard:320ms; --k-editorial-enter:520ms; --k-editorial-ease:cubic-bezier(.2,.8,.2,1); }
+.k-editorial-canvas { background:var(--ode-canvas, Canvas); color:var(--ode-text, CanvasText); }
+.k-editorial-card { background:var(--ode-surface, Canvas); border:1px solid var(--ode-border, ButtonBorder); border-radius:18px; box-shadow:0 22px 48px color-mix(in srgb, var(--ode-text, CanvasText) 10%, transparent); }
+.k-editorial-headline { font:800 clamp(2rem,5vw,4rem)/1.07 system-ui,sans-serif; letter-spacing:-.045em; }
+.k-editorial-headline em { color:var(--ode-primary, Highlight); font-family:Georgia,serif; font-weight:500; }
+.k-editorial-highlight { background:linear-gradient(transparent 45%, color-mix(in srgb, var(--ode-primary, Highlight) 20%, transparent) 45%, color-mix(in srgb, var(--ode-primary, Highlight) 20%, transparent) 94%, transparent 94%); }
+.k-editorial-enter { animation:k-editorial-card-in var(--k-editorial-enter) var(--k-editorial-ease) both; }
+.k-editorial-phrase-enter { animation:k-editorial-word-in var(--k-editorial-standard) var(--k-editorial-ease) both; }
+.k-editorial-success-pop { animation:k-editorial-pop 260ms var(--k-editorial-ease) both; }
+@keyframes k-editorial-card-in { from { opacity:0;transform:translateY(24px) scale(.95) rotate(-1.5deg); } to { opacity:1;transform:translateY(0) scale(1) rotate(0); } }
+@keyframes k-editorial-word-in { from { opacity:0;filter:blur(5px);transform:translateY(11px); } to { opacity:1;filter:blur(0);transform:translateY(0); } }
+@keyframes k-editorial-pop { 0% {opacity:0;transform:scale(.72);} 68% {opacity:1;transform:scale(1.07);} 100% {transform:scale(1);} }
+@media (prefers-reduced-motion:reduce) { .k-editorial-enter,.k-editorial-phrase-enter,.k-editorial-success-pop { animation:none!important; transition:none!important; filter:none!important; transform:none!important; } }

@@ -1,0 +1,6 @@
+{
+  "name": "system-design",
+  "version": "1.0.0",
+  "description": "System design toolkit: a 4-step method (scope and estimate, high-level design, deep dive, wrap-up), back-of-the-envelope math, 22 worked blueprints (chat, feed, URL shortener, payments, wallet, stock exchange, maps, object storage and more), a distributed-patterns reference (rate limiting, consistent hashing, quorum, queues, idempotency, sagas, event sourcing, geospatial indexes), an architecture review with severity-ranked findings, and a mock-interview command. Includes a Laravel stack mapping.",
+  "skills": "./skills/"
+}

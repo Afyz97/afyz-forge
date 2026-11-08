@@ -1,0 +1,4 @@
+518c518
+< da872274aa72387b5d7b9c4b7d6a8d7a6a11e93e53897c62fe6bfa654c51a6ec *ai-skills/.claude/settings.json
+---
+> df8b04b9f9ff3d9089ed992e0f348fcd17f18ce37917446b16f64a7489c577a1 *ai-skills/.claude/settings.json

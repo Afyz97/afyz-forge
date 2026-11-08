@@ -1,0 +1,109 @@
+{
+  "source": "User-uploaded video, November 2026",
+  "duration_s": 92.4667,
+  "fps": 30,
+  "dimensions": "720x1280",
+  "shots": [
+    {
+      "second": 0,
+      "file": "00s-mascot-intro.jpg"
+    },
+    {
+      "second": 2,
+      "file": "02s-headline-and-floating-app.jpg"
+    },
+    {
+      "second": 3,
+      "file": "03s-layered-warning.jpg"
+    },
+    {
+      "second": 6,
+      "file": "06s-privacy-floating-card.jpg"
+    },
+    {
+      "second": 8,
+      "file": "08s-terms-layered-cards.jpg"
+    },
+    {
+      "second": 9,
+      "file": "09s-cookie-panel.jpg"
+    },
+    {
+      "second": 12,
+      "file": "12s-email-preferences.jpg"
+    },
+    {
+      "second": 16,
+      "file": "16s-countdown-correction.jpg"
+    },
+    {
+      "second": 20,
+      "file": "20s-keyboard-focus.jpg"
+    },
+    {
+      "second": 24,
+      "file": "24s-license-audit.jpg"
+    },
+    {
+      "second": 28,
+      "file": "28s-data-deletion.jpg"
+    },
+    {
+      "second": 30,
+      "file": "30s-dark-pattern-correction.jpg"
+    },
+    {
+      "second": 32,
+      "file": "32s-ai-generated-label.jpg"
+    },
+    {
+      "second": 34,
+      "file": "34s-checkbox-consent.jpg"
+    },
+    {
+      "second": 40,
+      "file": "40s-cancellation-workflow.jpg"
+    },
+    {
+      "second": 48,
+      "file": "48s-parental-consent.jpg"
+    },
+    {
+      "second": 56,
+      "file": "56s-consent-switches.jpg"
+    },
+    {
+      "second": 63,
+      "file": "63s-data-training-flow.jpg"
+    },
+    {
+      "second": 69,
+      "file": "69s-sdk-architecture.jpg"
+    },
+    {
+      "second": 72,
+      "file": "72s-privacy-toggles.jpg"
+    },
+    {
+      "second": 76,
+      "file": "76s-subprocessors-list.jpg"
+    },
+    {
+      "second": 82,
+      "file": "82s-invoice-fees.jpg"
+    },
+    {
+      "second": 84,
+      "file": "84s-green-checklist-reveal.jpg"
+    },
+    {
+      "second": 87,
+      "file": "87s-comment-to-purple-card.jpg"
+    },
+    {
+      "second": 90,
+      "file": "90s-disclaimer-closing.jpg"
+    }
+  ],
+  "note": "These frames are reference captures, not production artwork. No source animation curves or editable source project were provided."
+}

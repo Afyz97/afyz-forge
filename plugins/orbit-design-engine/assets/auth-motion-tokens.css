@@ -1,0 +1,12 @@
+/* Auth interaction geometry: visual roles always inherited from the host theme. */
+:root {
+  --orbit-auth-canvas: var(--ode-canvas, Canvas);
+  --orbit-auth-hero-surface: var(--app-hero-surface, var(--ode-primary, Highlight));
+  --orbit-auth-hero-text: var(--app-hero-text, var(--ode-on-primary, HighlightText));
+  --orbit-auth-form-surface: var(--ode-surface, Canvas);
+  --orbit-auth-form-text: var(--ode-text, CanvasText);
+  --orbit-auth-border: var(--ode-border, ButtonBorder);
+  --orbit-auth-radius:22px; --orbit-auth-sweep-ms:720ms;
+  --orbit-auth-sweep-ease:cubic-bezier(.68,0,.22,1); --orbit-auth-inner-enter-ms:230ms;
+}
+@media (prefers-reduced-motion:reduce) { :root { --orbit-auth-sweep-ms:0ms; --orbit-auth-inner-enter-ms:0ms; } }

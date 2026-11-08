@@ -1,0 +1,103 @@
+{
+  "clip_duration_seconds": 6.175,
+  "source": "User-provided 6.175s 720x1280 30fps reference video",
+  "note": "Frame timestamps are samples of the clip, not measured animation duration or source easing.",
+  "frames": [
+    {
+      "name": "00-dashboard-initial",
+      "timestamp_seconds": 0.0,
+      "file": "00-dashboard-initial.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "01-dashboard-progress",
+      "timestamp_seconds": 0.24,
+      "file": "01-dashboard-progress.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "02-dashboard-complete",
+      "timestamp_seconds": 0.6,
+      "file": "02-dashboard-complete.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "03-dashboard-hover",
+      "timestamp_seconds": 1.25,
+      "file": "03-dashboard-hover.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "04-route-tasks-transition",
+      "timestamp_seconds": 1.8,
+      "file": "04-route-tasks-transition.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "05-tasks-heading",
+      "timestamp_seconds": 1.95,
+      "file": "05-tasks-heading.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "06-tasks-board-enter",
+      "timestamp_seconds": 2.25,
+      "file": "06-tasks-board-enter.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "07-tasks-board-settled",
+      "timestamp_seconds": 2.65,
+      "file": "07-tasks-board-settled.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "08-route-analytics-transition",
+      "timestamp_seconds": 3.1,
+      "file": "08-route-analytics-transition.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "09-analytics-count-start",
+      "timestamp_seconds": 3.5,
+      "file": "09-analytics-count-start.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "10-analytics-count-progress",
+      "timestamp_seconds": 3.9,
+      "file": "10-analytics-count-progress.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "11-analytics-range-shift",
+      "timestamp_seconds": 4.1,
+      "file": "11-analytics-range-shift.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "12-analytics-count-settled",
+      "timestamp_seconds": 4.7,
+      "file": "12-analytics-count-settled.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "13-route-settings-transition",
+      "timestamp_seconds": 5.34,
+      "file": "13-route-settings-transition.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "14-settings-population",
+      "timestamp_seconds": 5.66,
+      "file": "14-settings-population.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    },
+    {
+      "name": "15-settings-final",
+      "timestamp_seconds": 5.98,
+      "file": "15-settings-final.jpg",
+      "note": "Visible centre-band application UI; title and code panel excluded."
+    }
+  ]
+}

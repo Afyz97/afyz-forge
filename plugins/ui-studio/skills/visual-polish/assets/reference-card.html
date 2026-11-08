@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ten Fixes — reference card (after)</title>
+<style>
+/* Tokens (see tokens.css). Every value below comes from here. */
+:root {
+  --text-hero: 4.75rem; --text-title: 1.0625rem; --text-body: 0.875rem; --text-caption: 0.75rem;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --inset: 16px;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --weight-regular: 400; --weight-strong: 600; --weight-hero: 300;
+  --surface: #0b1220; --card: rgba(255,255,255,0.08);
+  --fg: #f5f7fa; --fg-muted: #b4bfcf; --accent: #38bdf8; --track: rgba(255,255,255,0.14);
+  --icon-inline: 20px; --icon-hero: 56px; --icon-stroke: 1.5; --radius: 16px;
+  --sky-clear:  linear-gradient(180deg, #1e5a8a 0%, #0b1f36 100%);
+  --sky-cloudy: linear-gradient(180deg, #24496b 0%, #0b1a2c 100%);
+  --sky-rain:   linear-gradient(180deg, #2b3646 0%, #0d121a 100%);
+  --sky-night:  linear-gradient(180deg, #0f1b3a 0%, #05080f 100%);
+}
+* { box-sizing: border-box; margin: 0; }
+body { min-height: 100vh; display: grid; place-items: center; background: var(--surface);
+  font-family: var(--font-sans); color: var(--fg); font-weight: var(--weight-regular); }
+
+/* 10 — live surface: state drives the sky */
+.weather { width: min(360px, 100%); padding: var(--inset); border-radius: var(--radius);
+  display: grid; gap: var(--space-3); background: var(--sky-cloudy);
+  transition: background 300ms ease; }
+.weather[data-state="clear"] { background: var(--sky-clear); }
+.weather[data-state="rain"]  { background: var(--sky-rain); }
+.weather[data-state="night"] { background: var(--sky-night); }
+@media (prefers-reduced-motion: reduce) { .weather { transition: none; } }
+
+/* 01 hierarchy + 02 one left edge */
+.now { display: grid; grid-template-columns: 1fr auto; gap: var(--space-1); }
+.now__place { font-size: var(--text-title); font-weight: var(--weight-strong); }
+.now__time, .now__summary { font-size: var(--text-caption); color: var(--fg-muted); }
+.now__temp { font-size: var(--text-hero); font-weight: var(--weight-hero); line-height: 1; letter-spacing: -0.02em; }
+
+/* 07 one icon set */
+.icon { width: var(--icon-inline); height: var(--icon-inline); fill: none; stroke: currentColor;
+  stroke-width: var(--icon-stroke); stroke-linecap: round; stroke-linejoin: round; }
+.icon.now__icon { grid-row: 1 / span 4; grid-column: 2; width: var(--icon-hero); height: var(--icon-hero); }
+
+/* 08 grouping */
+.card { background: var(--card); border-radius: var(--radius); padding: var(--space-3); }
+
+.hourly { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-2); text-align: center; }
+.hour { display: grid; justify-items: center; gap: var(--space-1); font-size: var(--text-body); }
+.hour__time { font-size: var(--text-caption); color: var(--fg-muted); }
+
+/* 09 show, don't list */
+.daily { display: grid; gap: var(--space-2); }
+.day { display: grid; grid-template-columns: 3ch var(--icon-inline) 3.5ch 1fr 3.5ch; align-items: center;
+  gap: var(--space-3); font-size: var(--text-body); }
+.day__lo { color: var(--fg-muted); text-align: right; }
+.day__hi { text-align: right; }
+.range { position: relative; height: 4px; border-radius: 999px; background: var(--track); }
+.range__fill { position: absolute; inset-block: 0; left: calc(var(--lo) * 1%);
+  width: calc((var(--hi) - var(--lo)) * 1%); border-radius: inherit; background: var(--accent); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 11a3.5 3.5 0 0 0 1 7z"/></symbol>
+  <symbol id="i-partly" viewBox="0 0 24 24"><path d="M8 3v1.5M3.5 7.5H2M4.3 3.8l1 1M12 8a4 4 0 0 0-7.2 2.4"/><path d="M9 20h8a3.5 3.5 0 0 0 .4-7A5 5 0 0 0 8 14.2 3 3 0 0 0 9 20z"/></symbol>
+  <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 15h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 8a3.5 3.5 0 0 0 1 7z"/><path d="M9 18l-1 3M13 18l-1 3M17 18l-1 3"/></symbol>
+</svg>
+
+<article class="weather" data-state="cloudy" aria-label="Lisbon weather">
+  <header class="now">
+    <h1 class="now__place">Lisbon</h1>
+    <p class="now__time">Tue · 14:00</p>
+    <p class="now__temp" aria-label="24 degrees">24°</p>
+    <p class="now__summary">Partly cloudy · H 27° L 18°</p>
+    <svg class="icon now__icon" aria-hidden="true"><use href="#i-partly"/></svg>
+  </header>
+
+  <section class="card hourly" aria-label="Hourly forecast">
+    <div class="hour"><span class="hour__time">Now</span><svg class="icon"><use href="#i-partly"/></svg><span>24°</span></div>
+    <div class="hour"><span class="hour__time">15</span><svg class="icon"><use href="#i-sun"/></svg><span>25°</span></div>
+    <div class="hour"><span class="hour__time">16</span><svg class="icon"><use href="#i-sun"/></svg><span>26°</span></div>
+    <div class="hour"><span class="hour__time">17</span><svg class="icon"><use href="#i-partly"/></svg><span>25°</span></div>
+    <div class="hour"><span class="hour__time">18</span><svg class="icon"><use href="#i-cloud"/></svg><span>23°</span></div>
+    <div class="hour"><span class="hour__time">19</span><svg class="icon"><use href="#i-rain"/></svg><span>21°</span></div>
+  </section>
+
+  <!-- shared scale: min 15°, max 28° -->
+  <section class="card daily" aria-label="4-day forecast">
+    <div class="day"><span>Wed</span><svg class="icon"><use href="#i-sun"/></svg><span class="day__lo">17°</span>
+      <div class="range" role="img" aria-label="Wed, low 17°, high 28°" style="--lo:15.4;--hi:100"><span class="range__fill"></span></div><span class="day__hi">28°</span></div>
+    <div class="day"><span>Thu</span><svg class="icon"><use href="#i-partly"/></svg><span class="day__lo">18°</span>
+      <div class="range" role="img" aria-label="Thu, low 18°, high 26°" style="--lo:23.1;--hi:84.6"><span class="range__fill"></span></div><span class="day__hi">26°</span></div>
+    <div class="day"><span>Fri</span><svg class="icon"><use href="#i-rain"/></svg><span class="day__lo">15°</span>
+      <div class="range" role="img" aria-label="Fri, low 15°, high 21°" style="--lo:0;--hi:46.2"><span class="range__fill"></span></div><span class="day__hi">21°</span></div>
+    <div class="day"><span>Sat</span><svg class="icon"><use href="#i-cloud"/></svg><span class="day__lo">16°</span>
+      <div class="range" role="img" aria-label="Sat, low 16°, high 24°" style="--lo:7.7;--hi:69.2"><span class="range__fill"></span></div><span class="day__hi">24°</span></div>
+  </section>
+</article>
+</body>
+</html>

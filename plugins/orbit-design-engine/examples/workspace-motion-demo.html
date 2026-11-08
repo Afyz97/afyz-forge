@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orbit Design Engine — Workspace Motion Reference Demo</title>
+<style>
+/* Standalone original demonstration. Example values are fabricated and clearly marked as DEMO DATA.
+   Not original code/assets from the user's video. */
+:root { --primary:var(--app-primary,var(--ode-primary,Highlight)); --primary-soft:var(--app-surface-subtle,var(--ode-surface-muted,ButtonFace)); --on-primary:var(--app-on-primary,var(--ode-on-primary,HighlightText)); --text:var(--app-foreground,var(--ode-text,CanvasText)); --muted:var(--app-muted-foreground,var(--ode-text-muted,GrayText)); --edge:var(--app-border,var(--ode-border,ButtonBorder)); --surface:var(--app-surface,var(--ode-surface,Canvas)); --bg:var(--app-background,var(--ode-canvas,Canvas)); --shadow:0 6px 18px color-mix(in srgb,var(--text) 8%,transparent); --motion:cubic-bezier(.22,.8,.25,1);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+* {box-sizing:border-box}
+body {margin:0;background:var(--bg);color:var(--text);font-size:14px}
+button {font:inherit;cursor:pointer}
+button:focus-visible {outline:3px solid var(--primary);outline-offset:2px}
+.shell {display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh}
+aside {background:var(--surface);border-right:1px solid var(--edge);padding:24px 14px;display:flex;flex-direction:column;gap:8px}
+.logo {font-weight:800;font-size:20px;padding:9px 12px 27px;letter-spacing:-.7px}.logo b {display:inline-grid;place-items:center;background:var(--primary);color:var(--on-primary);border-radius:10px;width:32px;height:32px;margin-right:9px}
+.nav {border:0;border-radius:9px;background:transparent;display:flex;align-items:center;gap:11px;color:var(--muted);width:100%;padding:12px;text-align:left;transition:background .15s,color .15s}
+.nav[aria-current="page"] {background:var(--primary-soft);color:var(--primary);font-weight:750;border-left:3px solid var(--primary);padding-left:9px}
+.nav:not([aria-current="page"]):hover {background:var(--primary-soft);color:var(--text)}
+.nav .symbol {font-size:18px;width:24px;text-align:center}
+.sidebar-foot {margin-top:auto;border-radius:13px;color:var(--on-primary);padding:20px 12px;background:var(--primary);font-size:13px}
+.shell-main{min-width:0}.top {height:69px;background:var(--surface);border-bottom:1px solid var(--edge);padding:0 27px;display:flex;align-items:center;gap:20px;justify-content:space-between}
+.search {border-radius:9px;border:1px solid var(--edge);background:var(--bg);color:var(--muted);padding:10px 14px;flex:1;max-width:360px}
+.identity {white-space:nowrap;font-weight:650;color:var(--text)}.identity span {display:inline-grid;place-items:center;background:var(--primary-soft);width:30px;height:30px;border-radius:50%;margin-right:7px}
+main {max-width:1320px;margin:0 auto;padding:29px;min-height:calc(100vh - 69px)}
+.page {animation:slideIn .27s var(--motion) both}
+.header {display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px}.header h1 {font-size:26px;letter-spacing:-1px;margin:0 0 5px}.header p {color:var(--muted);margin:0;font-size:13px}
+.pill-btn {border:0;border-radius:30px;background:var(--primary);padding:10px 17px;color:var(--on-primary);font-weight:650}
+.kpis {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.card {border:1px solid var(--edge);border-radius:14px;background:var(--surface);padding:18px;box-shadow:var(--shadow)}
+.kpi {min-height:120px;animation:cardIn .3s var(--motion) both}.kpi.highlight {background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.kpi .subhead {font-size:12px;opacity:.76;margin:0 0 10px}.kpi strong {font-size:32px;font-weight:740;letter-spacing:-1.2px;font-variant-numeric:tabular-nums}
+.kpi .foot {font-size:11px;opacity:.65;margin-top:11px}
+.tiles {display:grid;grid-template-columns:1.35fr .8fr .8fr;gap:13px;margin-top:15px}.tiles h2,.stat h2 {font-size:14px;margin:0 0 12px}
+.bars {height:175px;display:flex;align-items:flex-end;gap:12px;padding:12px 3px 2px;overflow:hidden}
+.bar {flex:1;border-radius:9px 9px 3px 3px;background:var(--primary);height:var(--bar-height);transform-origin:bottom;animation:grow .6s var(--motion) both;animation-delay:var(--delay)}
+.bar:nth-child(even) {background:color-mix(in srgb,var(--primary) 62%,var(--surface))}.bar.muted {background:repeating-linear-gradient(-45deg,var(--edge) 0 4px,var(--bg) 4px 8px)}
+.mini-row {display:flex;align-items:center;gap:8px;font-size:12px;padding:10px 0;border-bottom:1px solid var(--edge)}.mini-row:last-child{border:0}.dot {background:var(--primary-soft);border-radius:50%;color:var(--primary);padding:5px;font-size:12px}
+.columns {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.column {background:var(--bg);border:1px solid var(--edge);border-radius:14px;padding:11px;animation:cardIn .3s var(--motion) both;animation-delay:var(--delay)}
+.column h2 {display:flex;justify-content:space-between;margin:4px 6px 13px;font-size:13px}.count {color:var(--muted);font-weight:450}
+.task {background:var(--surface);border:1px solid var(--edge);border-radius:9px;padding:12px 11px;margin-bottom:8px;box-shadow:var(--shadow);animation:cardIn .22s var(--motion) both;animation-delay:var(--delay)}
+.task strong {font-size:12px;line-height:1.4;display:block}.tag {display:inline-block;background:var(--primary-soft);color:var(--primary);border-radius:5px;font-size:10px;padding:4px 6px;margin-bottom:8px}.task small{display:block;margin-top:9px;color:var(--muted)}
+.seg {display:flex;gap:3px;padding:4px;border:1px solid var(--edge);border-radius:28px;background:var(--surface)}
+.seg button{padding:7px 12px;border-radius:18px;border:0;background:transparent;color:var(--muted)}.seg [aria-pressed="true"]{background:var(--primary);color:var(--on-primary)}
+.statgrid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.stat {min-height:194px;animation:cardIn .3s var(--motion) both}.stat h2 {font-weight:520;color:var(--muted)}.stat .number {font-size:31px;font-weight:700;letter-spacing:-1px;font-variant-numeric:tabular-nums}.stat small{font-size:11px;color:var(--primary)}
+.spark {width:100%;height:65px;margin-top:10px}.spark path {fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.spark .area{fill:var(--primary-soft);stroke:none}.spark polyline{stroke-dasharray:480;stroke-dashoffset:480;animation:draw .7s var(--motion) forwards}
+.options {display:grid;grid-template-columns:180px 1fr;gap:15px}.settings-nav{padding:12px}.settings-nav p{color:var(--muted);font-size:12px;margin:7px 10px}.settings-nav .subactive{color:var(--primary);background:var(--primary-soft);border-radius:7px;padding:9px 11px;font-weight:650}
+.settings-inner label {display:block;font-size:12px;color:var(--muted);margin:12px 0 6px}.settings-inner input{border:1px solid var(--edge);border-radius:7px;padding:12px;width:100%;font:inherit;background:var(--bg)}
+.theme-preview{border:1px solid var(--edge);background:var(--primary-soft);color:var(--text);border-radius:10px;padding:12px 16px;cursor:pointer}.theme-preview:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.demo-note {margin:0 0 17px;color:var(--muted);font-size:12px}
+#toast {position:fixed;bottom:22px;right:24px;background:var(--primary);color:var(--on-primary);border-radius:9px;padding:12px 19px;box-shadow:0 10px 25px color-mix(in srgb,var(--text) 12%,transparent);opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s;pointer-events:none}#toast.active{opacity:1;transform:translateY(0)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes grow{from{transform:scaleY(.06);opacity:.4}to{transform:scaleY(1);opacity:1}}
+@keyframes slideIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1050px){.tiles{grid-template-columns:1fr 1fr}.tiles>:first-child{grid-column:span 2}.columns{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.shell{grid-template-columns:1fr}aside{flex-direction:row;flex-wrap:wrap;padding:7px}.logo{padding:6px 12px}.nav{width:auto;padding:8px}.nav[aria-current="page"]{border-left:0;border-bottom:3px solid var(--primary);padding-left:8px}.sidebar-foot{display:none}.top{height:53px;padding:0 12px}main{padding:15px}.kpis{grid-template-columns:repeat(2,1fr)}.tiles,.statgrid,.columns{grid-template-columns:1fr}.tiles>:first-child{grid-column:auto}.options{grid-template-columns:1fr}.header{align-items:flex-start;flex-direction:column;gap:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside aria-label="Primary navigation">
+    <div class="logo"><b aria-hidden="true">O</b> Orbit UI</div>
+    <button class="nav" data-page="dashboard"><span class="symbol" aria-hidden="true">◫</span>Dashboard</button>
+    <button class="nav" data-page="tasks"><span class="symbol" aria-hidden="true">☑</span>Tasks</button>
+    <button class="nav" data-page="analytics"><span class="symbol" aria-hidden="true">▥</span>Analytics</button>
+    <button class="nav" data-page="settings"><span class="symbol" aria-hidden="true">⚙</span>Settings</button>
+    <div class="sidebar-foot">Design motion with purpose. Preserve real application state.</div>
+  </aside>
+  <section class="shell-main">
+    <div class="top"><span class="search" aria-label="Search placeholder">⌕ Search projects and tasks</span><span class="identity"><span aria-hidden="true">OD</span>Orbit Demo</span></div>
+    <main id="content" aria-live="off"></main>
+  </section>
+</div>
+<div role="status" aria-live="polite" id="toast"></div>
+<script>
+'use strict';
+// Self-contained demonstrator. The values below are MOCK values, not fetched from any project.
+const data={dashboard:[24,10,12,2],analytics:{'7D':[72,390,87,2.4],'30D':[212,1188,91,2.9],'90D':[646,3532,89,3.0]}};
+const content=document.getElementById('content');
+const nav=[...document.querySelectorAll('[data-page]')];
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+let page='dashboard', period='30D', previousPeriod=null, generation=0, handles=new Set(), toastTimer=0;
+const numberFmt=(n,kind)=> kind==='pct'?`${Math.round(n)}%`:kind==='days'?`${n.toFixed(1)} d`:Math.round(n).toLocaleString('en-US');
+function cancelMotion(){generation++;for(const id of handles)cancelAnimationFrame(id);handles.clear();}
+function animateCount(el,end,kind='',duration=700){
+  const mine=generation;const startText=el.getAttribute('data-from');const from=startText===null?0:Number(startText);
+  const format=n=>numberFmt(n,kind);el.setAttribute('aria-label',format(end));
+  if(reduced.matches){el.textContent=format(end);return;}
+  const started=performance.now();
+  let rafId;
+  function next(now){handles.delete(rafId);if(generation!==mine)return;const t=Math.min(1,(now-started)/duration), ease=1-Math.pow(1-t,3);el.textContent=format(from+(end-from)*ease);
+    if(t<1){rafId=requestAnimationFrame(next);handles.add(rafId);}else{el.textContent=format(end);}}
+  rafId=requestAnimationFrame(next);handles.add(rafId);
+}
+const header=(title,description,action='')=>`<div class="header"><div><h1>${title}</h1><p>${description}</p></div>${action}</div>`;
+function dashboard(){content.innerHTML=`<div class="page">${header('Dashboard','An overview of your work, from one place.','<button class="pill-btn" id="new-project">+ New project</button>')}<div class="kpis">${['Total projects','Ended projects','Running projects','Pending projects'].map((name,i)=>`<article class="card kpi ${i===0?'highlight':''}" style="animation-delay:${i*36}ms"><p class="subhead">${name}</p><strong class="count-up" data-value="${data.dashboard[i]}">0</strong><div class="foot">Demo project count</div></article>`).join('')}</div><section class="tiles"><div class="card"><h2>Project analytics</h2><div class="bars">${[36,74,58,82,45,68,36].map((val,i)=>`<div class="bar ${i===0||i>=4?'muted':''}" style="--bar-height:${val}%;--delay:${i*58}ms" title="Demo metric ${i+1}"></div>`).join('')}</div></div><div class="card"><h2>Reminders</h2><div class="mini-row"><span class="dot">◷</span>Weekly team check-in</div><div class="mini-row"><span class="dot">◎</span>Review project notes</div><button class="pill-btn" id="remind">View reminders</button></div><div class="card"><h2>Projects</h2><div class="mini-row">◉ Website refresh</div><div class="mini-row">◉ Client portal</div><div class="mini-row">◉ Team workflow</div></div></section></div>`;
+  document.querySelectorAll('.count-up').forEach(el=>animateCount(el,+el.dataset.value));
+  document.getElementById('new-project').onclick=()=>showToast('Demo action only — connect your project backend');
+  document.getElementById('remind').onclick=()=>showToast('Demo reminders — not connected to real data');
+}
+function tasks(){const cols=[['To do','Draft release notes','Prepare project brief'],['In progress','Implement app shell','Validate form flow'],['In review','Review analytics','Confirm accessibility'],['Done','Initial design tokens','Set up project']];
+content.innerHTML=`<div class="page">${header('Tasks','Track work through a consistent, clear board.','<button class="pill-btn" id="add-task">+ New task</button>')}<div class="columns">${cols.map((group,i)=>`<section class="column" style="--delay:${i*55}ms"><h2>${group[0]}<span class="count">${group.length-1}</span></h2>${group.slice(1).map((t,j)=>`<article class="task" style="--delay:${i*55+j*40}ms"><span class="tag">Demo task</span><strong>${t}</strong><small>Sample status · Orbit UI</small></article>`).join('')}</section>`).join('')}</div></div>`;
+document.getElementById('add-task').onclick=()=>showToast('Demo action only — no task was created');
+}
+function lineSVG(i){const values=Array.from({length:16},(_,j)=>18+Math.sin(j*.8+i)*7+Math.cos(j*1.6+i*.5)*4);const coord=values.map((v,j)=>`${j*24},${Math.round(v)}`).join(' ');const first=`0,50`,last=`360,50`;return `<svg class="spark" viewBox="0 0 360 60" role="img" aria-label="Illustrative trend line; mock data"><polygon class="area" points="${first} ${coord} ${last}"/><polyline points="${coord}" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
+function analytics(){const names=['Tasks completed','Hours tracked','On-time delivery','Average cycle time'];const values=data.analytics[period];const kinds=['','', 'pct','days'];content.innerHTML=`<div class="page">${header('Analytics','How your workflow and results change across periods.','<div class="seg" role="group" aria-label="Date range">'+['7D','30D','90D'].map(p=>`<button data-period="${p}" aria-pressed="${p===period}">${p}</button>`).join('')+'</div>')}<div class="statgrid">${names.map((n,i)=>`<article class="card stat" style="animation-delay:${i*45}ms"><h2>${n}</h2><div class="number count-up" data-value="${values[i]}" data-from="${previousPeriod!==null?data.analytics[previousPeriod][i]:0}" data-kind="${kinds[i]}">0</div><small>Example metric · ${period}</small>${lineSVG(i)}</article>`).join('')}</div></div>`;
+  document.querySelectorAll('[data-period]').forEach(el=>el.onclick=()=>{if(el.dataset.period!==period){previousPeriod=period;period=el.dataset.period;cancelMotion();analytics();}});
+  document.querySelectorAll('.count-up').forEach(el=>animateCount(el,+el.dataset.value,el.dataset.kind,750));
+}
+function settings(){content.innerHTML=`<div class="page">${header('Settings','Your existing app theme remains authoritative.')}<div class="options"><div class="card settings-nav"><p>PERSONAL</p><div class="subactive">Profile</div><p>Notifications</p><p>Appearance</p></div><section class="card settings-inner"><h2>Appearance</h2><p class="demo-note">This demonstration never changes an app's palette. It inherits the current theme; motion feedback can be tested without changing theme settings.</p><button type="button" id="preview-motion" class="theme-preview">Preview existing-theme animation</button><label for="sample-name">Display name</label><input id="sample-name" value="Orbit Demo (sample)" readonly /><label for="sample-mail">Email</label><input id="sample-mail" value="demo@example.invalid" readonly /></section></div></div>`;
+  document.getElementById('preview-motion').onclick=(e)=>{const btn=e.currentTarget;if(!reduced.matches&&btn.animate)btn.animate([{transform:'scale(.93) rotate(-6deg)'},{transform:'scale(1) rotate(0deg)'}],{duration:340,easing:'cubic-bezier(.2,.75,.3,1.2)'});showToast('Motion previewed with the existing theme');};
+}
+function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('active');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('active'),2500)}
+function goto(next){if(!['dashboard','tasks','analytics','settings'].includes(next))return;cancelMotion();page=next;nav.forEach(btn=>{if(btn.dataset.page===page)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current')});({dashboard,tasks,analytics,settings})[page]();}
+nav.forEach(btn=>btn.onclick=()=>goto(btn.dataset.page));goto('dashboard');
+</script>
+</body>
+</html>

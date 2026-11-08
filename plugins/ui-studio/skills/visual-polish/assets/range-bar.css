@@ -1,0 +1,20 @@
+/* Rule 09 — range bar on a SHARED scale.
+   Set --lo and --hi as 0–100 percentages of the global min..max of the visible set:
+   lo% = (low - min) / (max - min) * 100, hi% likewise.
+   <div class="range" role="img" aria-label="Wed, low 17°, high 28°" style="--lo:15.4; --hi:100">
+     <span class="range__fill"></span>
+   </div> */
+.range {
+  position: relative;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--track, rgba(255,255,255,0.12));
+}
+.range__fill {
+  position: absolute;
+  inset-block: 0;
+  left: calc(var(--lo) * 1%);
+  width: calc((var(--hi) - var(--lo)) * 1%);
+  border-radius: inherit;
+  background: var(--accent, #38bdf8);
+}

@@ -1,0 +1,30 @@
+{
+  "name": "orbit-design-engine",
+  "displayName": "Orbit Design Engine (ODE)",
+  "version": "8.0.0",
+  "description": "A 26-skill modular UI/UX and motion engine with enterprise design, operational and cinematic motion, auth diagonal swipes, visual QA and Claude Code/Codex guidance.",
+  "author": {
+    "name": "UI/UX Skills Package"
+  },
+  "homepage": "https://github.com/Afyz97/afyz-forge/tree/main/plugins/orbit-design-engine",
+  "repository": "https://github.com/Afyz97/afyz-forge",
+  "license": "Apache-2.0",
+  "keywords": [
+    "uiux",
+    "dashboard",
+    "motion",
+    "design-system",
+    "admin",
+    "laravel",
+    "react",
+    "video-reference",
+    "kanban",
+    "flips",
+    "theme-switch",
+    "orbit-ui",
+    "interface-design",
+    "kinetic-typography",
+    "auth-transitions",
+    "diagonal-wipe"
+  ]
+}

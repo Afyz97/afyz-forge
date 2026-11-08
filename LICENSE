@@ -1,0 +1,29 @@
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   Copyright (c) 2026 PLACEHOLDER — set copyright holder before publishing.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+   -------------------------------------------------------------------------
+
+   This file contains the standard Apache-2.0 notice. The full license text
+   is available at the URL above; replace the PLACEHOLDER copyright line with
+   the real holder and, if distributing, include the complete LICENSE text
+   per Apache-2.0 §4. The `license: Apache-2.0` SPDX identifier in each
+   SKILL.md frontmatter refers to these terms.
+
+   All design guidance in this suite is original and synthesized. No text,
+   rule databases, or proprietary palettes were copied from any studied
+   project; see docs/RESEARCH.md for attribution and method.

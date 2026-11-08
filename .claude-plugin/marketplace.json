@@ -1,0 +1,43 @@
+{
+  "name": "afyz-forge",
+  "owner": {
+    "name": "Afyz97",
+    "url": "https://github.com/Afyz97"
+  },
+  "metadata": {
+    "description": "Afyz97's Agent Skills marketplace (afyz-forge). Two UI plugins split by job — user-first-ux (how the UI behaves) and ui-studio (how it looks and is built) — plus the orbit-design-engine motion engine, system design and agent orchestration.",
+    "version": "0.10.0"
+  },
+  "plugins": [
+    {
+      "name": "user-first-ux",
+      "source": "./plugins/user-first-ux",
+      "description": "How a UI behaves for its users: a priority order (honest > accessible > usable > efficient > consistent > aesthetic), a Read-Report-Plan-Approve-Implement-Verify-Sync workflow, usability reviews, WCAG 2.2 AA audits, dark-pattern and privacy rules, all 30 Laws of UX with Gestalt and a Pass/Fail audit, UI states, forms and flows (checkout, onboarding, enterprise, mobile), EN/BM microcopy and localisation, and user research. Pairs with ui-studio, which owns look, tokens and build.",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "ui-studio",
+      "source": "./plugins/ui-studio",
+      "description": "How a UI looks and is built: visual direction with an anti-generic self-review, named styles (minimalism, glassmorphism, neumorphism, brutalism, bento, liquid glass and more), design tokens and design-system audits, visual polish with the measured Ten Fixes rules and scripts, stack builds for Laravel (Blade, Livewire 4, Flux UI v2, Filament, Tailwind, Bootstrap 5) and Next.js (React 19, Tailwind v4, Radix), critique, handoff, theming and canvas art. 3 read-only agents and a warn-only token hook. Pairs with user-first-ux for behaviour and accessibility.",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "orbit-design-engine",
+      "source": "./plugins/orbit-design-engine",
+      "description": "Reference-driven UI and motion engine: 26 skills that turn a sample site or video into application shells, dashboards, components, workspace and auth transitions, cinematic motion and visual/motion QA, inheriting the host app's theme. Use with ui-studio and user-first-ux; this plugin owns matching a visual or motion reference.",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "system-design",
+      "source": "./plugins/system-design",
+      "description": "System design toolkit: 4-step method with back-of-the-envelope estimation, 22 worked blueprints (chat, feed, URL shortener, payments, wallet, stock exchange, maps, object storage...), a distributed-patterns reference (rate limiting, consistent hashing, quorum, queues, idempotency, sagas, event sourcing, geo indexes), an architecture review with severity-ranked findings, a mock-interview command and a Laravel stack mapping.",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "session-orchestrator",
+      "source": "./plugins/session-orchestrator",
+      "description": "Session orchestrator: detects the harness (Claude Code, Codex, other) and per-call model/effort support, splits a task into session-local roles with self-contained briefs, routes each role to a model alias and effort by task class, delegates to a leaf-only role-runner agent, gates writer roles behind approval, keeps parallel writers on disjoint files, verifies results, and cleans up a gitignored temp folder. Falls back to model-only, same-model or inline roles.",
+      "license": "Apache-2.0"
+    }
+  ]
+}
