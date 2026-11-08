@@ -1,0 +1,6 @@
+{
+  "name": "skill-guard",
+  "version": "0.1.0",
+  "description": "Pre-install security audit for third-party Claude skills, plugins and marketplaces: quarantined fetch, a read-only stdlib Python scanner (prompt injection, hidden Unicode and homoglyphs, credential access, exfiltration, fetch-and-run, obfuscation, persistence, config tampering, hooks/MCP, binaries, zip-slip), a 12-section threat model for manual review, and a PASS / REVIEW / BLOCK report pinned to a commit SHA.",
+  "skills": "./skills/"
+}

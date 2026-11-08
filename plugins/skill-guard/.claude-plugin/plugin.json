@@ -1,0 +1,13 @@
+{
+  "name": "skill-guard",
+  "version": "0.1.0",
+  "description": "Pre-install security audit for third-party Claude skills, plugins and marketplaces: quarantined fetch, a read-only stdlib Python scanner (prompt injection, hidden Unicode and homoglyphs, credential access, exfiltration, fetch-and-run, obfuscation, persistence, config tampering, hooks/MCP, binaries, zip-slip), a 12-section threat model for manual review, and a PASS / REVIEW / BLOCK report pinned to a commit SHA.",
+  "author": {
+    "name": "Afyz97",
+    "url": "https://github.com/Afyz97"
+  },
+  "homepage": "https://github.com/Afyz97/afyz-forge",
+  "repository": "https://github.com/Afyz97/afyz-forge",
+  "license": "Apache-2.0",
+  "keywords": ["security", "supply-chain", "prompt-injection", "skill-audit", "plugin-audit", "mcp", "hooks", "malware"]
+}

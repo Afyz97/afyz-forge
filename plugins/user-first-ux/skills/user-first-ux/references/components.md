@@ -107,6 +107,10 @@
   destinations; drawer only for secondary items; command palette for expert tools, alongside
   visible navigation. Nav order stays stable between pages; label `<nav>` landmarks when there
   is more than one.
+- **SN5** Build the nav from an inventory of routes, roles and common destinations, grouped by
+  the user's mental model in product language, never by database table names. Switching role
+  or workspace keeps the user's task context. Check it from every major screen, deep routes,
+  empty states and browser Back/Forward.
 
 ## 8. Onboarding & empty states (O)
 

@@ -48,6 +48,24 @@ Plus an agent-workflow plugin:
    (built-in `general-purpose` is the fallback); read-only roles run freely only when the user asked
    for orchestration; Explore is never used for roles.
 
+Plus a skill-security plugin:
+
+8. **`skill-guard`** (added 2026-11-08) - built and tested in the `Afyz97/ai-skills` playground,
+   then copied here (ai-skills keeps its copy; publish polished versions here). Scanner fixes on
+   import: UTF-8 output (it crashed on Windows consoles on non-cp1252 evidence), new
+   `HID-HOMOGLYPH` rule. Self-check: `python -I plugins/skill-guard/tests/test_scan_skill.py`.
+
+Plus a refactoring plugin, and a merge (both 2026-11-08, from the ai-skills playground):
+
+9. **`codeweave`** - mirrored unchanged from ai-skills (where its `git_cochange.py` Python < 3.12
+   compile error was fixed). Kept separate: nothing here covers maintainability refactors
+   (`system-design-review` covers scalability and reliability).
+10. **`atelier-ux` merged, not mirrored.** Only `atelier-motion-countdown` had no owner here; it
+    became `ui-studio:ui-countdown`. Unique lines of navigation, workflow, data-storytelling and
+    editorial went into existing user-first-ux / ui-studio references; design-director,
+    visual-foundations, responsive-mobile and ux-quality-audit were duplicates;
+    `atelier-skill-enhancer` stays in the playground. Map: `MIGRATION.md` §5.
+
 ## Key decisions (and why)
 
 - **Two UI plugins split by job, one owner per topic** (2026-11). Before the merge, ui-studio held a
@@ -83,6 +101,8 @@ Plus an agent-workflow plugin:
 /plugin install orbit-design-engine@afyz-forge
 /plugin install system-design@afyz-forge
 /plugin install session-orchestrator@afyz-forge
+/plugin install skill-guard@afyz-forge
+/plugin install codeweave@afyz-forge
 ```
 Moving from the old `Afyz97/ai-skills` marketplace: `/plugin marketplace remove ai-skills`, then add
 `Afyz97/afyz-forge`, and uninstall the merged plugins (ux-laws, ui-ten-fixes, omni-design,

@@ -45,6 +45,19 @@ consumer app.
 - **Empty/partial by permission** — design the "you don't have access" and "nothing assigned to you"
   states, not just the full-data view.
 
+## Workflows & approvals
+
+- **Map the real process first** — every state, transition, responsible role, due date and exception
+  path (rejected, returned, blocked, expired, overridden) from the actual business rules.
+- **Each state looks different** — completed, current, upcoming, waiting, blocked and rejected differ
+  by label and shape or icon, using the status vocabulary above.
+- **Explain the next step** — who owns it, what is still required, and why this user can or cannot
+  act right now.
+- **Honest status** — separate automatic evaluation from manual checking; submitted is not approved;
+  a progress track never implies timing nobody knows. Never simplify away a required approval.
+- **Pick the form by volume** — compact cards for long queues, a rich detail page for one case, a
+  vertical flow on phones.
+
 ## Dashboards specifically
 
 - **Answer a question, don't decorate.** Every widget earns its place by supporting a real decision or
@@ -54,8 +67,13 @@ consumer app.
 - **Coordinated views** — filters and time ranges apply across related widgets; selecting in one
   updates others where it helps analysis.
 - **Right chart for the question** — trend→line, comparison→bar, part-of-whole→ sparingly (bar often
-  beats pie), distribution→histogram. Label directly; keep the chart palette a subset of the product
+  beats pie), distribution→histogram, stages→ordered timeline or stepper, hierarchy→tree,
+  relationships→network or radial only when the relationships are the point, records→sortable
+  table with drill-down. Label directly; keep the chart palette a subset of the product
   palette. Don't add a chart where a number or table is clearer.
+- **Honest gaps** — state the metric definition, source, timeframe and unit; show missing, pending,
+  zero and delayed values as such. The chart keeps its meaning in monochrome and with reduced motion;
+  on narrow screens switch to a simpler form rather than hiding facts.
 - **Density is fine** — operators want a lot on one screen; use alignment and grouping to keep it
   scannable rather than spreading it thin.
 

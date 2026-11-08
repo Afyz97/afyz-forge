@@ -1,0 +1,6 @@
+{
+  "name": "codeweave",
+  "version": "1.0.1",
+  "description": "Evidence-driven architecture audits, dependency untangling and behaviour-preserving refactoring of existing codebases: change-driver analysis (hidden links, needless links, surplus, special cases), reversible verified slices, optional comment/test curation, a decision log, and read-only repo-map and Git co-change scripts. Manual invoke only: /codeweave [scope] [--audit-only].",
+  "skills": "./skills/"
+}

@@ -11,7 +11,8 @@ Two rules stay here because they are accessibility rules (priority 2):
 - **C3** Never convey meaning by colour alone. Pair it with an icon, text or pattern. Charts
   must work for colour-blind users.
 - **M2** Respect `prefers-reduced-motion`. Nothing auto-plays > 5s without a pause control.
-  No flashing more than 3 times per second.
+  Auto-advancing carousels also pause on hover, focus and manual selection, and do not
+  auto-advance under reduced motion. No flashing more than 3 times per second.
 
 ```css
 @media (prefers-reduced-motion: reduce) {

@@ -28,6 +28,10 @@ icon squares, fake logos, identical section rhythm — reads as "generated." Avo
 - **Progressive depth** — skimmable first, detailed as you scroll; a scanner and a reader both served.
 - **Clear next step** — a single, repeated primary action; secondary paths (docs, pricing) subordinate.
 - **Footer** — real navigation, legal, trust; not an afterthought.
+- **Collections** (galleries, awards, archives, showcases) — pick filters, year selectors, featured
+  items and detail views by collection size and how people explore it. Bespoke category marks,
+  seals or certificates only where they carry meaning and stay scalable. An event window's
+  countdown and milestone timeline: the `ui-countdown` skill.
 
 ## Craft that reads as premium
 

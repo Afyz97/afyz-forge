@@ -2,6 +2,44 @@
 
 All notable changes to the afyz-forge marketplace. Versions are per plugin (SemVer).
 
+## 2026-11-08 — codeweave added, atelier-ux merged
+
+Marketplace metadata 0.11.0 → 0.12.0. Both developed in the `Afyz97/ai-skills` playground; both
+passed skill-guard (7 hits, all false positives). Full atelier map: `MIGRATION.md` §5.
+
+### codeweave 1.0.1 (new)
+- Manual-only (`/codeweave [scope] [--audit-only]`) evidence-driven architecture audit and
+  behaviour-preserving refactor: change drivers, hidden/needless links, surplus, special cases,
+  verified slices, decision-log template, review protocol, read-only `repo_audit.py` and
+  `git_cochange.py`.
+- Fixes over source 1.0.0: `git_cochange.py` failed to compile on Python 3.9-3.11 (backslash
+  inside an f-string expression); ASCII text; `${CLAUDE_PLUGIN_ROOT}` script path.
+
+### ui-studio 1.0.0 → 1.1.0
+- New skill `ui-countdown` (from atelier-motion-countdown): deadline, radial multi-ring and
+  phase-timeline countdowns derived from an authoritative instant; `references/layered-countdown.md`;
+  trigger evals. Motion timing points to M1, accessibility to user-first-ux.
+- `public-websites.md`: "Collections" line (galleries, awards, archives).
+
+### user-first-ux 1.1.0 → 1.2.0
+- `components.md`: SN5 (navigation from a route/role inventory; role switching keeps context).
+- `domains/enterprise-dashboards.md`: new "Workflows & approvals"; chart forms for stages,
+  hierarchy, relationships and records; "Honest gaps".
+- `visual-system.md` M2: carousels pause on hover, focus and manual selection; none under reduced
+  motion.
+
+## 2026-11-08 — skill-guard added
+
+Marketplace metadata 0.10.0 → 0.11.0.
+
+### skill-guard 0.1.0 (new)
+- Pre-install security audit for third-party skills, plugins and marketplaces: SKILL.md workflow,
+  `references/threat-model.md`, read-only stdlib scanner `scripts/scan_skill.py`.
+- Scanner fixes over the source `.skill`: UTF-8 output (it crashed mid-report on Windows consoles
+  when evidence held non-cp1252 Unicode), new `HID-HOMOGLYPH` rule for mixed-script hostnames.
+- ASCII-only docs, Windows-friendly commands, `${CLAUDE_PLUGIN_ROOT}` script path, a negative
+  trigger, a scanner self-check (`tests/`) and routing evals.
+
 ## 2026-11-08 — consolidation and move to afyz-forge
 
 Marketplace renamed `ai-skills` → `afyz-forge` and moved to the new repo `Afyz97/afyz-forge`

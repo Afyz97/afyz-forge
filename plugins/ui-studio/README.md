@@ -63,6 +63,7 @@ Model-invoked (Claude picks them from the request):
 | `ui-handoff` | Engineering spec with stack-aware notes |
 | `ui-theming` | 10 presets, custom themes, Anthropic brand (restricted) |
 | `ui-canvas-art` | Posters and static art with 29 bundled OFL font families |
+| `ui-countdown` | Deadline countdowns, radial multi-ring countdowns, event-phase timelines; correct across timezones, DST, tab sleep and expiry (from atelier-ux) |
 
 Manual only (hidden from auto-routing): `ui-plan`, `ui-build`, `ui-system`, `ui-theme`,
 `polish-audit`, `polish-fix`, `polish-new`.

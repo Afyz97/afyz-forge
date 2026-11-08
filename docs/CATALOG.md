@@ -8,10 +8,12 @@
 | Plugin | Skills (model-invoked) | Commands |
 |---|---|---|
 | user-first-ux | user-first-ux, ux-laws, ui-accessibility, ui-ux-copy, ui-research | ui-a11y, ui-copy |
-| ui-studio | ui-visual-direction, ui-styles, visual-polish, ui-design-system, ui-critique, ui-handoff, ui-stack-laravel, ui-stack-next, ui-theming, ui-canvas-art | ui-plan, ui-build, ui-system, ui-theme, polish-audit, polish-fix, polish-new |
+| ui-studio | ui-visual-direction, ui-styles, visual-polish, ui-design-system, ui-critique, ui-handoff, ui-stack-laravel, ui-stack-next, ui-theming, ui-canvas-art, ui-countdown | ui-plan, ui-build, ui-system, ui-theme, polish-audit, polish-fix, polish-new |
 | orbit-design-engine | 26 `orbit-ui-*` skills | — |
 | system-design | system-design, distributed-patterns, system-design-review | system-design-interview |
 | session-orchestrator | session-orchestrator | — |
+| skill-guard | skill-guard | — |
+| codeweave | — | codeweave |
 
 ## Historical catalog (pre-2026-11)
 

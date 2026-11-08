@@ -59,7 +59,29 @@ Then uninstall any of `ux-laws`, `ui-ten-fixes`, `omni-design`, `ultimate-design
 | `ui-studio` `ui-critic`, `design-system-auditor` | unchanged |
 | `ui-ten-fixes` `ui-ten-fixes-auditor` | `ui-studio` `ui-ten-fixes-auditor` |
 
-## 5. Rule changes you may notice
+## 5. atelier-ux (merged 2026-11-08)
+
+`atelier-ux` was never a plugin here; it lives whole in the `Afyz97/ai-skills` playground. Its
+de-duplicated content was merged into the two UI plugins:
+
+| atelier-ux skill | Here |
+|---|---|
+| `atelier-motion-countdown` (+ `references/layered-countdown.md`) | `ui-studio:ui-countdown` (new skill; carousel rules moved to user-first-ux M2) |
+| `atelier-navigation-architect` | `user-first-ux:user-first-ux` - components SN1-SN4 (existing) + SN5 (route/role inventory, mental-model grouping, role switching keeps context) |
+| `atelier-workflow-experience` | `user-first-ux:user-first-ux` - enterprise-dashboards "Workflows & approvals" (new section) |
+| `atelier-data-storytelling` | `user-first-ux:user-first-ux` - enterprise-dashboards "Right chart for the question" (extended) + "Honest gaps" |
+| `atelier-editorial-experience` | `ui-studio:ui-visual-direction` - public-websites "Collections"; event countdowns -> `ui-countdown` |
+| `atelier-design-director` | `/ui-studio:ui-build` (full loop) + ui-visual-direction `redesign-existing-ui.md` (duplicate, not copied) |
+| `atelier-visual-foundations` | `ui-studio:ui-design-system`, `ui-visual-direction`, `visual-polish` (duplicate) |
+| `atelier-responsive-mobile` | `user-first-ux:user-first-ux` `domains/mobile-ui.md` (duplicate) |
+| `atelier-ux-quality-audit` | `ui-studio:ui-critique` (100-point audit) + `user-first-ux` review (duplicate) |
+| `atelier-skill-enhancer` (+ `review_existing_skill.py`) | not migrated - playground only |
+| `scripts/install.py`, `scripts/validate.py`, `examples/requests.md` | not migrated (installs come from this marketplace) |
+
+Atelier's "never prescribe colours" stance needed no new rule: redesign of an existing app already
+extends its token system (`redesign-existing-ui.md` step 4); only new UI gets a token plan.
+
+## 6. Rule changes you may notice
 
 - Touch targets: AA minimum 24×24 px, **house floor 44×44 px** (was "aim for 44" in user-first-ux).
 - Contrast: minimum unchanged; recommended about 7:1 for small secondary text.

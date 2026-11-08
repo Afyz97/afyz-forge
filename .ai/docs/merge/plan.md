@@ -65,6 +65,7 @@ Only the owner states the rule and its numbers. Paths are TARGET paths; `UF` =
 | Design-system audit, document, extend | ui-studio → ui-design-system |
 | Handoff | ui-studio → ui-handoff |
 | Theming, canvas art | ui-studio → ui-theming, ui-canvas-art |
+| Countdowns, deadline timers, event-phase timelines (added 2026-11-08 from atelier-ux) | ui-studio → ui-countdown → SKILL.md, `references/layered-countdown.md` |
 | Connector roles | ui-studio → `references/shared/connectors.md` (user-first-ux skills refer by name) |
 
 ## 3.2 Conflict resolutions

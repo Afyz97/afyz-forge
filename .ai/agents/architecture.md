@@ -8,9 +8,9 @@ pieces relate. Keep this file in sync when the structure changes.
 `Afyz97/afyz-forge` is a **Claude Code plugin marketplace** (named `afyz-forge`) that publishes
 **Agent Skills** for AI coding agents. UI work is split by job between two plugins with **exactly one owner per topic**: `user-first-ux`
 (how the UI behaves) and `ui-studio` (how it looks and is built). Alongside them: the
-reference-driven `orbit-design-engine`, the non-UI `system-design` plugin and the
-`session-orchestrator` agent-workflow plugin. `ux-laws`, `ui-ten-fixes`, `omni-design` and
-`ultimate-design-suite` were merged into the two UI plugins and removed in 2026-11 (see
+reference-driven `orbit-design-engine`, the non-UI `system-design` plugin, the
+`session-orchestrator` agent-workflow plugin, the `skill-guard` skill-security plugin and the `codeweave` refactoring plugin. `ux-laws`, `ui-ten-fixes`, `omni-design`,
+`ultimate-design-suite` and (2026-11-08) `atelier-ux` were merged into the two UI plugins (see
 `MIGRATION.md`). It is designed to grow — non-design plugins can be added alongside.
 
 ## The four layers
@@ -20,8 +20,8 @@ GitHub repo:     Afyz97/afyz-forge                         (what users `/plugin 
   └─ marketplace: afyz-forge                               (.claude-plugin/marketplace.json → "name")
        ├─ plugin: user-first-ux    skills: user-first-ux, ux-laws, ui-accessibility, ui-ux-copy, ui-research (+ commands ui-a11y, ui-copy)
        ├─ plugin: ui-studio        skills: ui-visual-direction, ui-styles, visual-polish, ui-design-system, ui-critique, ui-handoff,
-       │                                   ui-stack-laravel, ui-stack-next, ui-theming, ui-canvas-art (+ 7 commands)
-       └─ plugin: orbit-design-engine, system-design, session-orchestrator
+       │                                   ui-stack-laravel, ui-stack-next, ui-theming, ui-canvas-art, ui-countdown (+ 7 commands)
+       └─ plugin: orbit-design-engine, system-design, session-orchestrator, skill-guard, codeweave
 ```
 
 - **Repo** — the GitHub address users add.
@@ -40,12 +40,12 @@ GitHub repo:     Afyz97/afyz-forge                         (what users `/plugin 
 afyz-forge/
 ├── .ai/agents/                     # this context (architecture, conventions, context, publishing)
 ├── .ai/docs/merge/ · .ai/docs/prompts/   # 2026-11 merge records and git command files
-├── .claude-plugin/marketplace.json # marketplace "afyz-forge" → 5 plugins
+├── .claude-plugin/marketplace.json # marketplace "afyz-forge" → 7 plugins
 ├── plugins/
 │   ├── user-first-ux/              # behaviour: priority order, workflow, WCAG, laws of UX, ethics, states, flows, copy, research
 │   ├── ui-studio/                  # look and build: tokens, visual direction, styles, polish, stacks, critique, handoff
 │   ├── orbit-design-engine/        # reference-driven motion and app-shell engine (own installer)
-│   └── system-design/ · session-orchestrator/
+│   └── system-design/ · session-orchestrator/ · skill-guard/ · codeweave/
 ├── scripts/design-audit.mjs        # deterministic UI smell auditor (Node, no deps) — shared tooling
 ├── evaluations/                    # EVALUATIONS.md, RUBRIC.md, fixtures/
 ├── docs/                           # ARCHITECTURE.md, CATALOG.md, RESEARCH.md, briefs, archive/omni-design/
@@ -118,6 +118,30 @@ plugins/session-orchestrator/
 ├── skills/session-orchestrator/ (SKILL.md + references/{detection,routing}.md + assets/{role-brief,manifest}.md)
 ├── evals/session-orchestrator/{trigger-1..3,no-trigger-1..2}/ (trigger cases: case.yaml + fixture.sh)
 ├── README.md
+```
+
+**`skill-guard`** is a skill-security plugin: 1 model-invoked skill that audits third-party
+skills/plugins/marketplaces before install, with a read-only stdlib scanner (the only script) and a
+threat-model reference. No hooks, no agents. Developed in `Afyz97/ai-skills` (the playground) and
+mirrored here.
+
+```
+plugins/skill-guard/
+├── .claude-plugin/plugin.json · .codex-plugin/plugin.json
+├── skills/skill-guard/ (SKILL.md + references/threat-model.md + scripts/scan_skill.py)
+├── tests/test_scan_skill.py     ├── evals/skill-guard/{trigger-1,no-trigger-1}/
+├── README.md
+```
+
+**`codeweave`** is a refactoring plugin: 1 manual-only skill (`disable-model-invocation: true`)
+for evidence-driven architecture audits and behaviour-preserving refactors, 3 references and 2
+read-only stdlib scripts. No hooks, no agents, no evals (manual skills never auto-route).
+Developed in `Afyz97/ai-skills` and mirrored here.
+
+```
+plugins/codeweave/
+├── .claude-plugin/plugin.json · .codex-plugin/plugin.json · README.md
+└── skills/codeweave/ (SKILL.md + README.md + references/ (3) + scripts/{repo_audit,git_cochange}.py)
 ```
 
 ## Cross-reference rules (do not break)

@@ -5,20 +5,20 @@
     "url": "https://github.com/Afyz97"
   },
   "metadata": {
-    "description": "Afyz97's Agent Skills marketplace (afyz-forge). Two UI plugins split by job — user-first-ux (how the UI behaves) and ui-studio (how it looks and is built) — plus the orbit-design-engine motion engine, system design and agent orchestration.",
-    "version": "0.10.0"
+    "description": "Afyz97's Agent Skills marketplace (afyz-forge). Two UI plugins split by job — user-first-ux (how the UI behaves) and ui-studio (how it looks and is built) — plus the orbit-design-engine motion engine, system design, agent orchestration, pre-install skill security and codebase refactoring.",
+    "version": "0.12.0"
   },
   "plugins": [
     {
       "name": "user-first-ux",
       "source": "./plugins/user-first-ux",
-      "description": "How a UI behaves for its users: a priority order (honest > accessible > usable > efficient > consistent > aesthetic), a Read-Report-Plan-Approve-Implement-Verify-Sync workflow, usability reviews, WCAG 2.2 AA audits, dark-pattern and privacy rules, all 30 Laws of UX with Gestalt and a Pass/Fail audit, UI states, forms and flows (checkout, onboarding, enterprise, mobile), EN/BM microcopy and localisation, and user research. Pairs with ui-studio, which owns look, tokens and build.",
+      "description": "How a UI behaves for its users: a priority order (honest > accessible > usable > efficient > consistent > aesthetic), a Read-Report-Plan-Approve-Implement-Verify-Sync workflow, usability reviews, WCAG 2.2 AA audits, dark-pattern and privacy rules, all 30 Laws of UX with Gestalt and a Pass/Fail audit, UI states, forms and flows (checkout, onboarding, enterprise, workflows and approvals, navigation, mobile), EN/BM microcopy and localisation, and user research. Pairs with ui-studio, which owns look, tokens and build.",
       "license": "Apache-2.0"
     },
     {
       "name": "ui-studio",
       "source": "./plugins/ui-studio",
-      "description": "How a UI looks and is built: visual direction with an anti-generic self-review, named styles (minimalism, glassmorphism, neumorphism, brutalism, bento, liquid glass and more), design tokens and design-system audits, visual polish with the measured Ten Fixes rules and scripts, stack builds for Laravel (Blade, Livewire 4, Flux UI v2, Filament, Tailwind, Bootstrap 5) and Next.js (React 19, Tailwind v4, Radix), critique, handoff, theming and canvas art. 3 read-only agents and a warn-only token hook. Pairs with user-first-ux for behaviour and accessibility.",
+      "description": "How a UI looks and is built: visual direction with an anti-generic self-review, named styles (minimalism, glassmorphism, neumorphism, brutalism, bento, liquid glass and more), design tokens and design-system audits, visual polish with the measured Ten Fixes rules and scripts, stack builds for Laravel (Blade, Livewire 4, Flux UI v2, Filament, Tailwind, Bootstrap 5) and Next.js (React 19, Tailwind v4, Radix), countdowns and time-based UI, critique, handoff, theming and canvas art. 3 read-only agents and a warn-only token hook. Pairs with user-first-ux for behaviour and accessibility.",
       "license": "Apache-2.0"
     },
     {
@@ -37,6 +37,18 @@
       "name": "session-orchestrator",
       "source": "./plugins/session-orchestrator",
       "description": "Session orchestrator: detects the harness (Claude Code, Codex, other) and per-call model/effort support, splits a task into session-local roles with self-contained briefs, routes each role to a model alias and effort by task class, delegates to a leaf-only role-runner agent, gates writer roles behind approval, keeps parallel writers on disjoint files, verifies results, and cleans up a gitignored temp folder. Falls back to model-only, same-model or inline roles.",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "skill-guard",
+      "source": "./plugins/skill-guard",
+      "description": "Pre-install security audit for third-party skills, plugins and marketplaces: quarantined fetch, a read-only stdlib scanner (prompt injection, hidden Unicode and homoglyphs, credential theft, exfiltration, fetch-and-run, obfuscation, persistence, config tampering, hooks/MCP, binaries, zip-slip), a 12-section threat model for manual review, and a PASS / REVIEW / BLOCK report pinned to a commit SHA.",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "codeweave",
+      "source": "./plugins/codeweave",
+      "description": "Evidence-driven architecture audits, dependency untangling and behaviour-preserving refactoring of existing codebases: change-driver analysis (hidden links, needless links, surplus, special cases), reversible verified slices, optional comment/test curation, a decision log, and read-only repo-map and Git co-change scripts. Manual invoke only: /codeweave [scope] [--audit-only].",
       "license": "Apache-2.0"
     }
   ]

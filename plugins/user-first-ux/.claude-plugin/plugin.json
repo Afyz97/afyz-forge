@@ -1,7 +1,7 @@
 {
   "name": "user-first-ux",
-  "version": "1.1.0",
-  "description": "How a UI behaves for its users: a priority order (honest > accessible > usable > efficient > consistent > aesthetic), a Read-Report-Plan-Approve-Implement-Verify-Sync workflow, usability reviews, WCAG 2.2 AA audits, dark-pattern and privacy rules, all 30 Laws of UX with Gestalt and a Pass/Fail audit, UI states, forms and flows (checkout, onboarding, enterprise, mobile), EN/BM microcopy and localisation, and user research. Pairs with ui-studio, which owns look, tokens and build.",
+  "version": "1.2.0",
+  "description": "How a UI behaves for its users: a priority order (honest > accessible > usable > efficient > consistent > aesthetic), a Read-Report-Plan-Approve-Implement-Verify-Sync workflow, usability reviews, WCAG 2.2 AA audits, dark-pattern and privacy rules, all 30 Laws of UX with Gestalt and a Pass/Fail audit, UI states, forms and flows (checkout, onboarding, enterprise, workflows and approvals, navigation, mobile), EN/BM microcopy and localisation, and user research. Pairs with ui-studio, which owns look, tokens and build.",
   "author": {
     "name": "Afyz97",
     "url": "https://github.com/Afyz97"
